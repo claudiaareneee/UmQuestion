@@ -13,6 +13,6 @@ git push                # Push your changes to GitHub
 ```
 
 Getting started: 
-*Run ```npm install```
-*Run ```npm install -g express@4.15.2```
-*Run ```npm install -g socket.io```
+- Run ```npm install```
+- Run ```npm install -g express@4.15.2```
+- Run ```npm install -g socket.io```
