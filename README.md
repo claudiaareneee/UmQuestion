@@ -11,3 +11,8 @@ git commit -m "Write your message inside the quotation marks"   # Commit your ch
 git pull                # Make sure there are no new changes
 git push                # Push your changes to GitHub
 ```
+
+Getting started: 
+Run ```npm install```
+Run ```npm install -g express@4.15.2```
+Run ```npm install -g socket.io```
