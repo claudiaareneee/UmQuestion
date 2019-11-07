@@ -19,6 +19,7 @@ git push                # Push your changes to GitHub
 - Run ```npm install -g socket.io```
 
 ## To run this project
+In order to start the server, run the following command:
 ```
 node index.js
 ```
