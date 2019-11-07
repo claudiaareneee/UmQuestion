@@ -1,4 +1,6 @@
 # UmQuestion
+*UmQuestion* is a message board for students to anonymously post questions to so that teachers can address them.Teachers will be able to designate a classroom for questions to be posted to and delete questions in any classroom they create. Students will be able to post questions to classrooms and advocate for other questions to make them more visible.Admins will be able to manage other accounts and classrooms.
+
 
 ## Github information
 Here's the quick git commands:
