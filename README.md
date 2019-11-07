@@ -30,5 +30,5 @@ Installations:
 ## To run this project
 In order to start the server, run the following command:
 ```
-node index.js
+node app.js
 ```

@@ -1,0 +1,41 @@
+/* Defining our colors */
+:root{
+    --primary-color: #5EB1BF;
+    --primary-color-light:#F0F2EF;
+    --primary-color-dark: #042A2B;
+    --secondary-color: #EF7B45;
+    --secondary-color-dark: #D84727;
+    
+    --primary-text-color: #272838;
+    --primary-text-color-light: #CECCCC;
+}
+
+html {
+    background: var(--primary-color-light);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+    color: var(--primary-text-color);
+}
+
+/* Title bar */
+#topBar{
+    background: var(--primary-color);
+    padding: 100px;
+} 
+
+#apptitle {
+    font-weight: lighter;
+    text-align: center;
+    color: var(--primary-color-light);
+} 
+
+/* .lightText {
+    color: var(--primary-text-color-subheadding);
+    font-size: .75em;
+} */
+
