@@ -24,8 +24,12 @@ git clone https://github.com/claudiaareneee/UmQuestion.git
 Installations:
 - Install [Node JS](https://nodejs.org/en/download/)
 - Run ```npm install```
-- Run ```npm install -g express@4.15.2```
-- Run ```npm install -g socket.io```
+- Run ```npm install express@4.15.2```
+- Run ```npm install socket.io```
+- Run ```npm install --save bootstrap```
+
+#OR# just run 
+- Run ```npm install```: The package.json will auto install all of our dependencies
 
 ## To run this project
 In order to start the server, run the following command:
