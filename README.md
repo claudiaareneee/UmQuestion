@@ -1,6 +1,7 @@
 # UmQuestion
 
-## Here's the quick git commands:
+## Github information
+Here's the quick git commands:
 ```
 git pull                # check for changes before making changes
 # Make your changes
@@ -12,7 +13,13 @@ git pull                # Make sure there are no new changes
 git push                # Push your changes to GitHub
 ```
 
+To clone this repository, navigate to the directory you want to make this project in, and run the following command in your terminal
+```
+git clone https://github.com/claudiaareneee/UmQuestion.git
+```
+
 ## Getting started
+Installations:
 - Install [Node JS](https://nodejs.org/en/download/)
 - Run ```npm install```
 - Run ```npm install -g express@4.15.2```
