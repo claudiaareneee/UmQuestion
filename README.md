@@ -36,6 +36,8 @@ In order to start the server, run the following command:
 ```
 node app.js
 ```
-THis is a thing that I'm going to write here
-woo error time.
-
+Or you could also run
+```
+npm start
+```
+These both provide the same function. ```npm start``` runs any commands in the ```script``` object in ```package.json```.
