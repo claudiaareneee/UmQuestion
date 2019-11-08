@@ -16,7 +16,7 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lato', sans-serif;
     padding-bottom: 2rem;
 }
 
@@ -27,11 +27,12 @@ p {
 /* Title bar */
 #topBar{
     background: var(--primary-color);
-    padding: 100px;
+    padding: 5%;
 } 
 
 #apptitle {
     font-weight: lighter;
+    font-size: 6rem;
     text-align: center;
     color: var(--primary-color-light);
 } 
