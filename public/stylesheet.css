@@ -60,6 +60,13 @@ p {
     float: right;
 }
 
+.center-contents{
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    float: none;
+}
+
 .questionContainer {
     margin-bottom: 2rem;
 }

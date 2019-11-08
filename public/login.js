@@ -13,5 +13,5 @@ submitButton.onclick = function(){
 
 var loginButton = document.getElementById("newUserButton");
 loginButton.onclick = function(){
-    window.location = "newUser.html";
+    window.location = "newuser.html";
 };
