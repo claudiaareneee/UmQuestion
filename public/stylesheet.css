@@ -7,6 +7,7 @@
     --secondary-color-dark: #D84727;
     
     --primary-text-color: #272838;
+    --primary-text-color-lighter-dark: #6F6F8F;
     --primary-text-color-light: #CECCCC;
 }
 
@@ -16,6 +17,7 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 2rem;
 }
 
 p {
@@ -35,14 +37,17 @@ p {
 } 
 
 #mainContent {
-    margin-top: 2rem;
-    margin-right: 16rem;
-    margin-left: 16rem;
+    margin: 2rem;
+    align-self: center;
 }
 
-/* .questionContainer {
-    
-} */
+.questionContainer {
+    margin-bottom: 2rem;
+}
+
+.unansweredQuestion{
+    color: var(--primary-text-color-lighter-dark);
+}
 
 /* .lightText {
     color: var(--primary-text-color-subheadding);

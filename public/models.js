@@ -12,3 +12,11 @@ var Question = function (authorId, courseId, message){
     this.endorserIds = [];
 };
 
+var Answer = function (authorId, courseId, questionId, message){
+    this.postId = 0;
+    this.authorId = authorId || 0;
+    this.questionId = questionId || 0;
+    this.courseId = courseId || 0;
+    this.message = message || "";this.endorseCount = 0;
+    this.endorserIds = [];
+};
