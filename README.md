@@ -29,7 +29,7 @@ Installations:
 - Run ```npm install --save bootstrap```
 
 #OR# just run 
-- Run ```npm install```: The package.json will auto install all of our dependencies
+- Run ```npm install```: The package.json will auto install all of our dependenciesn
 
 ## To run this project
 In order to start the server, run the following command:
