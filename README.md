@@ -36,3 +36,5 @@ In order to start the server, run the following command:
 ```
 node app.js
 ```
+I'm editing some lines to show a merge conflict. 
+Testing here we go!
