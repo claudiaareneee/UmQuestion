@@ -20,3 +20,8 @@ var Answer = function (authorId, courseId, questionId, message){
     this.message = message || "";this.endorseCount = 0;
     this.endorserIds = [];
 };
+
+var Course = function (courseId) {
+	this.courseID = courseId;
+	
+};
