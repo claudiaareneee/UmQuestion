@@ -1,10 +1,6 @@
 function getPosts(){
     //TODO: Update this to pull from the database
     var posts = [];
-	
-	socket.emit('fetch_posts'); // Begins the post fetch operation.
-	
-	socket.on('sendPosts' function(dta){
 		
 	});
 	
