@@ -6,7 +6,7 @@ function getPosts(){
 	
 	var thing = new Course(2);
 	setTimeout(function() {
-	console.log(thing.courseID)
+	console.log(thing.courseID);
 	console.log(thing.posts);
 	console.log(thing.userIDs);
 	console.log(thing.teacherID);
