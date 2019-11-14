@@ -2,8 +2,15 @@ function getPosts(){
     //TODO: Update this to pull from the database
     var posts = [];
 		
-	});
 	
+	
+	var thing = new Course(2);
+	setTimeout(function() {
+	console.log(thing.courseID)
+	console.log(thing.posts);
+	console.log(thing.userIDs);
+	console.log(thing.teacherID);
+	}, 500);
 	// Left in for now.
     /* posts[0] = {
         question : new Question(1,1,"How much wood could a wood chuck chuck if a woodchuck could chuck wood?"),

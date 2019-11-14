@@ -24,26 +24,32 @@ var Answer = function (authorId, courseId, questionId, message){
 class Course{
 	constructor(courseID){
 		this.courseID = courseID;
-		this.posts = fetchPosts();
-		this.userIDs = fetchUsers();
-		this.teacherID = fetchTeacher();
+		this.posts = 0;
+		this.userIDs = 0;
+		this.teacherID = 0;
+		this.fetchPosts();
+		this.fetchUsers();
+		this.fetchTeacher();
 	}
 	fetchPosts(){
 		socket.emit('fetch_posts', this.courseID);
+		var that = this;
 		socket.on('send_posts', function(dta){ // dta is an array of postID's that are attached to the given course.
-			return dta;
+			that.posts = dta;
 		});
 	}
 	fetchUsers(){
 		socket.emit('fetch_users', this.courseID);
+		var that = this;
 		socket.on('send_users', function(dta){ // dta is an array of userID's attached to the given course;
-			return dta;
+			that.userIDs = dta;
 		});
 	}
 	fetchTeacher(){
 		socket.emit('fetch_teacher', this.courseID);
+		var that = this;
 		socket.on('send_teacher', function(dta){ // dta is the ID of the teacher in charge of the course.
-			return dta;
+			that.teacherID = dta;
 		});
 	}
 }
