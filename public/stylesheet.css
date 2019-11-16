@@ -79,6 +79,19 @@ p {
     margin-top: 1rem;
 }
 
+.info-bar{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    display: inline-block;
+    background-color: black;
+    width: 100%;
+    margin-bottom: -1rem;
+}
+
+.info-bar-icon{
+    margin-left: 1rem;
+}
+
 /* .lightText {
     color: var(--primary-text-color-subheadding);
     font-size: .75em;
