@@ -110,3 +110,32 @@ View.createNewAnswerView = function(){
 
     return li;
 };
+
+View.createCourseList = function(courses) {
+    var ul = document.createElement("UL");
+    ul.className ="list-group list-group-flush";
+
+    for (var course of courses){
+        var li = document.createElement("LI");
+
+        li.className = "list-group-item";
+
+        li.innerText = course.courseName;
+        console.log(course);
+        console.log('tets');
+        ul.appendChild(li);
+    }
+
+    var createCourseLi = document.createElement("LI");
+    var createCourseButton = document.createElement("BUTTON");
+
+    createCourseLi.className = "list-group-item";
+    createCourseButton.className = "btn btn-primary";
+
+    createCourseButton.innerText = "New Course";
+    createCourseLi.appendChild(createCourseButton);
+
+    ul.appendChild(createCourseLi);
+
+    return ul;
+};

@@ -26,11 +26,12 @@ class Answer {
 }
 
 class Course{
-	constructor(courseID){
+	constructor(courseID, courseName){
 		this.courseID = courseID;
-		this.posts = fetchPosts();
-		this.userIDs = fetchUsers();
-		this.teacherID = fetchTeacher();
+		this.courseName = courseName;
+		this.posts = this.fetchPosts();
+		this.userIDs = this.fetchUsers();
+		this.teacherID = this.fetchTeacher();
 	}
 	fetchPosts(){
 		socket.emit('fetch_posts', this.courseID);
