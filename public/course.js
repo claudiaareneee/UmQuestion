@@ -31,6 +31,9 @@ function addNewQuestion(questionText){
 contentContainer = document.getElementById("mainContent");
 contentContainer.appendChild(View.createNewPost());
 
+var courseName = document.getElementById("courseName");
+courseName.innerText = "Distributed Client/Server Programming";
+
 var posts = getPosts();
 for (var post of posts){
     var view = View.createPost(post.question, post.answers);

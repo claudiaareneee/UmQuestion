@@ -8,6 +8,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <!-- Our custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
@@ -15,10 +16,18 @@
   </head>
   <body>
       <div id="topBar">
-        <h1 id="apptitle">Um, Question ☝️</h1>
+        <h1 id="apptitle" class="w-100">Um, Question ☝️</h1>
+        <div class="form-inline float-right w-25">
+          <input type="text" class="form-control" placeholder="Enter Course ID...">
+          <button class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
       </div>
 
-      <div id="mainContent"></div>
+      <div id="mainContent">
+        <h3 id="courseName">Welcome to ...</h3>
+        <p>Instructor: Kortni Neal</p>
+        <p>Course ID: 231423</p>
+      </div>
       
       <!-- Bootstrap -->
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
