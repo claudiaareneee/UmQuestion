@@ -19,7 +19,14 @@
           <div class="form-inline float-right w-25">
               <input type="text" class="form-control" placeholder="Enter Course ID...">
               <button class="btn btn-primary info-bar-icon"><i class="fa fa-search" aria-hidden="true"></i></button>
-              <button class="btn btn-primary info-bar-icon"><i class="fa fa-user" aria-hidden="true"></i></button>
+              <div class="button-group">
+                  <button class="btn btn-primary info-bar-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i></button>
+                  <div class="dropdown-menu">
+                      <a class="dropdown-item" id="profileButton">Profile</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" id="logoutButton">Logout</a>
+                    </div>
+              </div>
           </div>
       </div>
       <div id="topBar"> 

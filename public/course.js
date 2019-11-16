@@ -45,3 +45,9 @@ newPostButton.addEventListener("click", () => {
     var questionText = document.getElementById("newQuestion").value;
     addNewQuestion(questionText);
 });
+
+var logoutButton = document.getElementById("logoutButton");
+logoutButton.addEventListener("click", () => {
+    // HANDLE LOGGING OUT
+    window.location = "login.html";
+});
