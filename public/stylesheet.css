@@ -2,7 +2,7 @@
 :root{
     --primary-color: #5EB1BF;
     --primary-color-light:#F0F2EF;
-    --primary-color-dark: #042A2B;
+    --primary-color-dark: rgb(4, 27, 43);
     --secondary-color: #EF7B45;
     --secondary-color-dark: #D84727;
     
@@ -83,7 +83,7 @@ p {
     padding-top: .5rem;
     padding-bottom: .5rem;
     display: inline-block;
-    background-color: black;
+    background-color: var(--primary-color-dark);
     width: 100%;
     margin-bottom: -1rem;
 }
