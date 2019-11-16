@@ -48,11 +48,17 @@ newPostButton.addEventListener("click", () => {
 
 var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
-    // HANDLE LOGGING OUT
+    // TODO: HANDLE LOGGING OUT
     window.location = "login.html";
+});
+
+var courseButton = document.getElementById("courseButton");
+courseButton.addEventListener("click", () => {
+    // TODO: HANDLE LOGGING OUT
+    window.location = "courselist.html";
 });
 
 var courseSearchButton = document.getElementById("courseSearchButton");
 courseSearchButton.addEventListener("click", () => {
-    // Handle navigating to new course
+    // TODO: Handle navigating to course
 });
