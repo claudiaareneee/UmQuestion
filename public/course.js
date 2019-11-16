@@ -51,3 +51,8 @@ logoutButton.addEventListener("click", () => {
     // HANDLE LOGGING OUT
     window.location = "login.html";
 });
+
+var courseSearchButton = document.getElementById("courseSearchButton");
+courseSearchButton.addEventListener("click", () => {
+    // Handle navigating to new course
+});
