@@ -46,6 +46,8 @@ View.createAnswerListView = function(answers){
         ul.appendChild(li);
     }
 
+    ul.appendChild(View.createNewAnswerView());
+
     return ul;
 };
 
@@ -88,4 +90,23 @@ View.createNewPost = function(){
     body.appendChild(form);
     container.appendChild(body);
     return container;
+};
+
+View.createNewAnswerView = function(){
+    var li = document.createElement("LI");
+
+    var newAnswer = document.createElement("TEXTAREA");
+    var postAnser = document.createElement("BUTTON");
+
+    newAnswer.className = "form-control w-100";
+    postAnser.className = "btn btn-primary float-right newPostButton";
+    li.className = "list-group-item";
+
+    newAnswer.setAttribute("placeholder", "Answer question...");
+    postAnser.innerText = "Post answer";
+    
+    li.appendChild(newAnswer);
+    li.appendChild(postAnser);
+
+    return li;
 };
