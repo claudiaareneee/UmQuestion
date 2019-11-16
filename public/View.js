@@ -58,3 +58,34 @@ View.createPost = function (question, answers){
     container.appendChild(questionView);
     return container;
 };
+
+View.createNewPost = function(){
+    var container = document.createElement("DIV");
+    var body = document.createElement("DIV");
+    var title = document.createElement("H5");
+    var form = document.createElement("DIV");
+    var newQuestion = document.createElement("TEXTAREA");
+    var postQuestion = document.createElement("BUTTON");
+
+    container.className = "questionContainer card";
+    body.className = "card-body";
+    title.className = "card-title";
+    // form.className = "form-inline";
+    newQuestion.className = "form-control w-100";
+    postQuestion.className = "btn btn-primary float-right newPostButton";
+
+    newQuestion.setAttribute("type", "text");
+    newQuestion.setAttribute("id", "newQuestion");
+    newQuestion.setAttribute("placeholder", "Enter a new question");
+    postQuestion.setAttribute("id", "postQuestionButton");
+
+    title.innerHTML = "Ask a new question";
+    postQuestion.innerHTML = "Post";
+
+    body.appendChild(title);
+    form.appendChild(newQuestion);
+    form.appendChild(postQuestion);
+    body.appendChild(form);
+    container.appendChild(body);
+    return container;
+};

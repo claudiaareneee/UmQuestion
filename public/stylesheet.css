@@ -75,6 +75,10 @@ p {
     color: var(--primary-text-color-lighter-dark);
 }
 
+.newPostButton{
+    margin-top: 1rem;
+}
+
 /* .lightText {
     color: var(--primary-text-color-subheadding);
     font-size: .75em;
