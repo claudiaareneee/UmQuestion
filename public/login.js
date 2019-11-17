@@ -3,7 +3,9 @@ var password = document.getElementById("password");
 
 var submitButton = document.getElementById("loginButton");
 submitButton.onclick = function(){
-    //TODO: verify user and log them in
+    //TODO: verify user
+	
+	socket.emit("Login_Validation", email);
 
     if(email.value != "" && password.value != "")
         window.location = "course.html";

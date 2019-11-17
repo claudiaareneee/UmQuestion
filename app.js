@@ -54,6 +54,12 @@ io.on('connection', function(socket){
 	socket.emit('send_teacher', 60);
   });
   
+  socket.on('Login_Validation', function(dta){ // Needs  to return the UserID of the teacher attached to the CourseID.
+	client.query('', (err, res) => {
+		console.log(err ? err.stack : res.rows[0]) // Hello World!
+	})
+  });
+  
 });
 
 http.listen(process.env.PORT || 3000, function(){
