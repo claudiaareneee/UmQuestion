@@ -4,32 +4,34 @@ This file contains all of our classes as defined by the design document.
 
 // Will want Methods to return Class data as JSON objects.
 
-/*var Question = function (authorId, courseId, message){
-    this.postId = 0;
-    this.authorId = authorId || 0;
-    this.courseId = courseId || 0;
-    this.message = message || "";this.endorseCount = 0;
-    this.endorserIds = [];
-};
+class Question {
+	constructor(authorId, courseId, message){
+		this.postId = 0;
+		this.authorId = authorId || 0;
+		this.courseId = courseId || 0;
+		this.message = message || "";this.endorseCount = 0;
+		this.endorserIds = [];
+	}   
+}
 
-var Answer = function (authorId, courseId, questionId, message){
-    this.postId = 0;
-    this.authorId = authorId || 0;
-    this.questionId = questionId || 0;
-    this.courseId = courseId || 0;
-    this.message = message || "";this.endorseCount = 0;
-    this.endorserIds = [];
-}; */
+class Answer {
+	constructor(authorId, courseId, questionId, message){
+		this.postId = 0;
+		this.authorId = authorId || 0;
+		this.questionId = questionId || 0;
+		this.courseId = courseId || 0;
+		this.message = message || "";this.endorseCount = 0;
+		this.endorserIds = [];
+	}
+}
 
 class Course{
-	constructor(courseID){
+	constructor(courseID, courseName){
 		this.courseID = courseID;
-		this.posts = 0;
-		this.userIDs = 0;
-		this.teacherID = 0;
-		this.fetchPosts();
-		this.fetchUsers();
-		this.fetchTeacher();
+		this.courseName = courseName;
+		this.posts = this.fetchPosts();
+		this.userIDs = this.fetchUsers();
+		this.teacherID = this.fetchTeacher();
 	}
 	fetchPosts(){
 		socket.emit('fetch_posts', this.courseID);
@@ -68,6 +70,6 @@ class Student extends User{
 
 class Teacher extends User{
 	constructor(userID){
-		super(userID)
+		super(userID);
 	}
 }

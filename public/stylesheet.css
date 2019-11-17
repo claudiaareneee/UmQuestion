@@ -2,7 +2,7 @@
 :root{
     --primary-color: #5EB1BF;
     --primary-color-light:#F0F2EF;
-    --primary-color-dark: #042A2B;
+    --primary-color-dark: rgb(4, 27, 43);
     --secondary-color: #EF7B45;
     --secondary-color-dark: #D84727;
     
@@ -75,6 +75,30 @@ p {
     color: var(--primary-text-color-lighter-dark);
 }
 
+.newPostButton{
+    margin-top: 1rem;
+}
+
+.info-bar{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    display: inline-block;
+    background-color: var(--primary-color-dark);
+    width: 100%;
+    margin-bottom: -1rem;
+}
+
+.info-bar-icon{
+    margin-left: 1rem;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.course-page-item {
+    margin-right: 1rem;
+}
 /* .lightText {
     color: var(--primary-text-color-subheadding);
     font-size: .75em;
