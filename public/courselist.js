@@ -1,3 +1,5 @@
+// TODO: Get logged in user and logged in user type
+
 var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
     // TODO: HANDLE LOGGING OUT
@@ -17,6 +19,7 @@ courseSearchButton.addEventListener("click", () => {
 
 
 var courses = [
+    // TODO: get courses
     new Course(1234, "DCSP"),
     new Course(2345, "Intro to CSE"),
     new Course(3456, "Microprocessors"),
