@@ -92,6 +92,13 @@ p {
     margin-left: 1rem;
 }
 
+.inline-block{
+    display: inline-block;
+}
+
+.course-page-item {
+    margin-right: 1rem;
+}
 /* .lightText {
     color: var(--primary-text-color-subheadding);
     font-size: .75em;

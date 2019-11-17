@@ -117,23 +117,47 @@ View.createCourseList = function(courses) {
 
     for (var course of courses){
         var li = document.createElement("LI");
+        var div = document.createElement("DIV");
+        var text = document.createElement("P");
+        var gotoCourseBtn = document.createElement("BUTTON");
+        var deleteCourseBtn = document.createElement("BUTTON");
 
         li.className = "list-group-item";
+        div.className = "inline-block";
+        gotoCourseBtn.className = "btn btn-primary course-page-item";
+        deleteCourseBtn.className = "btn btn-danger course-page-item";
 
-        li.innerText = course.courseName;
-        console.log(course);
-        console.log('tets');
+        text.innerText = "Name: " + course.courseName + " · Course ID: " + course.courseID;
+        gotoCourseBtn.innerText = "Go to course";
+        deleteCourseBtn.innerText = "Delete course";
+
+        div.appendChild(text);
+        div.appendChild(gotoCourseBtn);
+        div.appendChild(deleteCourseBtn);
+        li.appendChild(div);
         ul.appendChild(li);
     }
 
     var createCourseLi = document.createElement("LI");
+    var createCourseDiv = document.createElement("DIV");
+    var createCourseName = document.createElement("INPUT");
+    var createCourseID = document.createElement("INPUT");
     var createCourseButton = document.createElement("BUTTON");
 
     createCourseLi.className = "list-group-item";
-    createCourseButton.className = "btn btn-primary";
+    createCourseButton.className = "btn btn-primary course-page-item";
+    createCourseDiv.className = "form-inline";
+    createCourseName.className = "course-page-item form-control";
+    createCourseID.className = "course-page-item form-control";
 
     createCourseButton.innerText = "New Course";
-    createCourseLi.appendChild(createCourseButton);
+    createCourseName.setAttribute("placeholder", "Course Name");    
+    createCourseID.setAttribute("placeholder", "Course ID");
+
+    createCourseDiv.appendChild(createCourseName);
+    createCourseDiv.appendChild(createCourseID);
+    createCourseDiv.appendChild(createCourseButton);
+    createCourseLi.appendChild(createCourseDiv);
 
     ul.appendChild(createCourseLi);
 
