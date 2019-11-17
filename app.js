@@ -22,9 +22,6 @@ var client = new pg.Client({
 
 client.connect();
 
-client.query('INSERT INTO account(upassword, uname, utype) VALUES($1, $2, $3)', ['password', 'user', 's'], (err, res) => {
-})
-
 client.query('SELECT * FROM account', (err, res) => {
   console.log(err ? err.stack : res.rows[0]) // Hello World!
 })
@@ -55,9 +52,31 @@ io.on('connection', function(socket){
   });
   
   socket.on('Login_Validation', function(dta){ // Needs  to return the UserID of the teacher attached to the CourseID.
-	client.query('', (err, res) => { // Just needs to return the password attached to this email *ALEX*
+  console.log(dta);
+	client.query('SELECT * FROM account WHERE email = $1', [dta] , (err, res) => { // Just needs to return the password attached to this email *ALEX*
 		console.log(err ? err.stack : res.rows[0]) // Hello World!
+		if(res.rows[0] === undefined){
+			console.log("Query was undefined.");
+			socket.emit("Login_return", [-1, 0]);
+		}
+		else{
+		console.log("Query was defined.");	
+		socket.emit("Login_return", [res.rows[0].upassword, res.rows[0].utype]);
+		}
 	})
+  });
+  
+  socket.on('create_user', function(dta){
+	client.query('INSERT INTO account(email, upassword, utype) VALUES($1, $2, $3)', [dta.email, dta.password, dta.type], (err, res) => {
+		console.log(err ? err.stack : res.rows[0]) // Hello World!
+		if(err){
+			socket.emit("create_confirm", 0);
+			
+		}
+		else{
+			socket.emit("create_confirm", 1);
+		}
+	})  
   });
   
 });
