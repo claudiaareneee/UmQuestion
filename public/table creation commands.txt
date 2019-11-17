@@ -1,6 +1,6 @@
 CREATE TABLE account(
 	uid SERIAL PRIMARY KEY,
-	email TEXT,
+	email TEXT UNIQUE,
 	upassword TEXT NOT NULL,
 	uname TEXT,
 	utype CHAR NOT NULL,
