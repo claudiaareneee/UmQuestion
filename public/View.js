@@ -131,6 +131,9 @@ View.createCourseList = function(courses) {
         gotoCourseBtn.innerText = "Go to course";
         deleteCourseBtn.innerText = "Delete course";
 
+        // TODO: handle go to course button - this might need to be done in courselist.js but you do you
+        // TODO: handle delete course button - this might need to be done in courselist.js but you do you
+
         div.appendChild(text);
         div.appendChild(gotoCourseBtn);
         div.appendChild(deleteCourseBtn);
@@ -143,6 +146,8 @@ View.createCourseList = function(courses) {
     var createCourseName = document.createElement("INPUT");
     var createCourseID = document.createElement("INPUT");
     var createCourseButton = document.createElement("BUTTON");
+
+    // TODO: handle create Course Button - this might need to be done in courselist.js but you do you
 
     createCourseLi.className = "list-group-item";
     createCourseButton.className = "btn btn-primary course-page-item";

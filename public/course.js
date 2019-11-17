@@ -1,3 +1,5 @@
+// TODO: Get logged in user and logged in user type
+
 function getPosts(){
     //TODO: Update this to pull from the database
     var posts = [];
@@ -23,7 +25,8 @@ function getPosts(){
 
 function addNewQuestion(questionText){
     var post = new Question("authorId", "courseId", questionText);
-    //Do something with question
+    // TODO: send post to Database
+    // TODO: Re call fetch posts
 
     alert(questionText);
 }
@@ -62,3 +65,8 @@ var courseSearchButton = document.getElementById("courseSearchButton");
 courseSearchButton.addEventListener("click", () => {
     // TODO: Handle navigating to course
 });
+
+// TODO: I haven't made the UI for this yet, but a teacher needs to be able to delete a question
+function deleteQuestion(){
+
+}
