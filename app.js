@@ -55,7 +55,7 @@ io.on('connection', function(socket){
   });
   
   socket.on('Login_Validation', function(dta){ // Needs  to return the UserID of the teacher attached to the CourseID.
-	client.query('', (err, res) => {
+	client.query('', (err, res) => { // Just needs to return the password attached to this email *ALEX*
 		console.log(err ? err.stack : res.rows[0]) // Hello World!
 	})
   });
