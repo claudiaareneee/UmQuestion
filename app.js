@@ -61,22 +61,28 @@ io.on('connection', function(socket){
 		}
 		else{
 		console.log("Query was defined.");	
-		socket.emit("Login_return", [res.rows[0].upassword, res.rows[0].utype]);
+		socket.emit("Login_return", [res.rows[0].upassword, res.rows[0].utype, res.rows[0].uid]);
 		}
 	})
   });
   
   socket.on('create_user', function(dta){
-	client.query('INSERT INTO account(email, upassword, utype) VALUES($1, $2, $3)', [dta.email, dta.password, dta.type], (err, res) => {
+	client.query('INSERT INTO account(email, upassword, utype) VALUES($1, $2, $3) RETURNING uid', [dta.email, dta.password, dta.type], (err, res) => {
 		console.log(err ? err.stack : res.rows[0]) // Hello World!
 		if(err){
 			socket.emit("create_confirm", 0);
 			
 		}
 		else{
-			socket.emit("create_confirm", 1);
+			socket.emit("create_confirm", res.rows[0].uid);
 		}
 	})  
+  });
+  
+  socket.on('add_question', function(dta){
+	client.query('INSERT INTO post(uid, cid, ptype, content) VALUES($1, $2, $3, $4)', [dta.aID, dta.cID, 'q', dta.msg], (err, res) => {
+		console.log(err ? err.stack : res.rows[0]) // Hello World!
+	})    
   });
   
 });

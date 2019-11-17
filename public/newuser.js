@@ -10,9 +10,10 @@ createUserButton.onclick = function (){
 	else{
 		socket.emit('create_user', {email: email.value, password: password.value, type: type.value[0].toLowerCase()});
 		socket.on('create_confirm', function(dta){
-			if(dta == 1){
+			if(dta != 0){
 				console.log("confirmed account creation.");
-				sessionStorage.setItem('userType', type.value);
+				sessionStorage.setItem('userType', type.value[0].toLowerCase());
+				sessionStorage.setItem("userID', dta);
 				window.location = "course.html";
 			}
 			else{
