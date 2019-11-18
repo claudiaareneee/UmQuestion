@@ -13,11 +13,11 @@ createUserButton.onclick = function (){ // Still need to validate input.
 			if(dta != 0){
 				console.log("confirmed account creation.");
 				sessionStorage.setItem('userType', type.value[0].toLowerCase());
-				sessionStorage.setItem("userID', dta);
+				sessionStorage.setItem("userID", dta);
 				window.location = "course.html";
 			}
 			else{
-				alert("User with that email already exists.")
+				alert("User with that email already exists.");
 			}
 		});
 	}

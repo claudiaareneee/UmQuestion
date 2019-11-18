@@ -23,8 +23,8 @@ var client = new pg.Client({
 client.connect();
 
 client.query('SELECT * FROM account', (err, res) => {
-  console.log(err ? err.stack : res.rows[0]) // Hello World!
-})
+  console.log(err ? err.stack : res.rows[0]); // Hello World!
+});
 
 setTimeout(function(){
 client.end();},
@@ -40,7 +40,7 @@ io.on('connection', function(socket){
 	// [{question: {postID: , msg: , authorId: , endorseCount:} answers: [{postID: , msg: , questionID: , authorID: } , ...]}, ...]
 	var posts= [];
 	client.query('SELECT * FROM post WHERE cid = $1 AND ptype = q', [dta], (err, res) => { // Untested, but hopefully will work without too much trouble. 
-		console.log(err ? err.stack : res.rows[0]) // Hello World!
+		console.log(err ? err.stack : res.rows[0]); // Hello World!
 		var y;
 		var endorse;
 		for (var x = 0; x < res.rows.length; x++){
@@ -71,7 +71,7 @@ io.on('connection', function(socket){
   socket.on('Login_Validation', function(dta){ // Needs  to return the UserID of the teacher attached to the CourseID.
   console.log(dta);
 	client.query('SELECT * FROM account WHERE email = $1', [dta] , (err, res) => { // Just needs to return the password attached to this email *ALEX*
-		console.log(err ? err.stack : res.rows[0]) // Hello World!
+		console.log(err ? err.stack : res.rows[0]); // Hello World!
 		if(res.rows[0] === undefined){
 			console.log("Query was undefined.");
 			socket.emit("Login_return", [-1, 0]);
@@ -80,12 +80,12 @@ io.on('connection', function(socket){
 		console.log("Query was defined.");	
 		socket.emit("Login_return", [res.rows[0].upassword, res.rows[0].utype, res.rows[0].uid]);
 		}
-	})
+	});
   });
   
   socket.on('create_user', function(dta){
 	client.query('INSERT INTO account(email, upassword, utype) VALUES($1, $2, $3) RETURNING uid', [dta.email, dta.password, dta.type], (err, res) => {
-		console.log(err ? err.stack : res.rows[0]) // Hello World!
+		console.log(err ? err.stack : res.rows[0]); // Hello World!
 		if(err){
 			socket.emit("create_confirm", 0);
 			
@@ -93,13 +93,13 @@ io.on('connection', function(socket){
 		else{
 			socket.emit("create_confirm", res.rows[0].uid);
 		}
-	})  
+	});  
   });
   
   socket.on('add_question', function(dta){
 	client.query('INSERT INTO post(uid, cid, ptype, content) VALUES($1, $2, $3, $4)', [dta.aID, dta.cID, 'q', dta.msg], (err, res) => {
-		console.log(err ? err.stack : res.rows[0]) // Hello World!
-	})    
+		console.log(err ? err.stack : res.rows[0]); // Hello World!
+	});    
   });
   
 });

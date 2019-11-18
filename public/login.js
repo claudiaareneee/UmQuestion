@@ -1,10 +1,10 @@
 
-var email = document.getElementById("email")
-var password = document.getElementById("password")
+var email = document.getElementById("email");
+var password = document.getElementById("password");
 var submitButton = document.getElementById("loginButton");
 submitButton.onclick = function(){
     //TODO: verify user
-	console.log(email.value)	
+	console.log(email.value);	
 	socket.emit("Login_Validation", email.value);
 	
 	var dbPassword = 0;
@@ -17,8 +17,8 @@ submitButton.onclick = function(){
 		else{
 			console.log(dbPassword);
 		if(password.value == dbPassword){
-		sessionStorage.setItem("userType", dta[1]) // 's' for student, 'a' for admin, 't' teacher.
-		sessionStorage.setItem("UserID", dta[2])
+		sessionStorage.setItem("userType", dta[1]); // 's' for student, 'a' for admin, 't' teacher.
+		sessionStorage.setItem("UserID", dta[2]);
         window.location = "course.html";
 		}
 		else{

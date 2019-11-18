@@ -25,7 +25,7 @@ function getPosts(){
 
 function addNewQuestion(questionText){
     var post = new Question(sessionStorage.userID, sessionStorage.courseID, questionText);
-	socket.emit("add_question", {aID:post.authorID, cID: post.courseID, msg:post.message})
+	socket.emit("add_question", {aID:post.authorID, cID: post.courseID, msg:post.message});
     // TODO: Re call fetch posts
 
     alert(questionText);
