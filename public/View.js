@@ -41,9 +41,9 @@ View.createAnswerListView = function(answers){
 
     if (answers.length == 0){
         answer = new Answer(0,0,0,"There are no answers yet");
-        var li = View.createAnswerView(answer);
-        li.className += " unansweredQuestion";
-        ul.appendChild(li);
+        var answerLi = View.createAnswerView(answer);
+        answerLi.className += " unansweredQuestion";
+        ul.appendChild(answerLi);
     }
 
     ul.appendChild(View.createNewAnswerView());
