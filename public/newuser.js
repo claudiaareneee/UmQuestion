@@ -3,7 +3,7 @@ email = document.getElementById('email');
 password = document.getElementById('password');
 vpassword = document.getElementById('vpassword');
 type = document.getElementById('inputState');
-createUserButton.onclick = function (){
+createUserButton.onclick = function (){ // Still need to validate input.
 	if(password.value != vpassword.value){
 		alert("Passwords do not match.");
 	}

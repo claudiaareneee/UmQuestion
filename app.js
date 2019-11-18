@@ -34,10 +34,27 @@ io.on('connection', function(socket){
   console.log('a user connected');
   
   socket.on('fetch_posts', function(dta){ // Needs to return array of post Ids attached to a course ID
-	 socket.emit('send_posts', [204, 205, 26]);
+	 //socket.emit('send_posts', [204, 205, 26]);
 	// First ask for all the questions related to the course.
 	// For each question, get its answers. 
 	// [{question: {postID: , msg: , authorId: , endorseCount:} answers: [{postID: , msg: , questionID: , authorID: } , ...]}, ...]
+	var posts= [];
+	client.query('SELECT * FROM post WHERE cid = $1 AND ptype = q', [dta], (err, res) => { // Untested, but hopefully will work without too much trouble. 
+		console.log(err ? err.stack : res.rows[0]) // Hello World!
+		var y;
+		var endorse;
+		for (var x = 0; x < res.rows.length; x++){
+			client.query('SELECT COUNT(*) FROM endorses_post WHERE pid = $1', [res.rows[x].pid], (err, res) => {
+				endorse = res.rows[0].count;
+				posts.push({question: {postID: res.rows[x].pid, msg: res.rows[x].content, authorID: res.rows[x].uid, endorseCount: endorse}, answers: []})
+				client.query('SELECT * FROM reply_to R, post P WHERE R.originalid = $1 AND R.replyid = P.pid', [x.pid], (err, res) => {
+					for(y of res.rows){
+						posts[x].answers.push({postID: y.pid, msg: y.content, authorID: y.uid});
+					}
+				});
+			});
+		}
+	});
   });
   /*
   [{question: blah, answers: []}]

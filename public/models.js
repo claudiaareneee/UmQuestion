@@ -36,7 +36,7 @@ class Course{
 	fetchPosts(){
 		socket.emit('fetch_posts', this.courseID);
 		var that = this;
-		socket.on('send_posts', function(dta){ // dta is an array of postID's that are attached to the given course.
+		socket.on('send_posts', function(dta){ // dta will be an object containing all of the questions in the course with their connected answers.
 			that.posts = dta;
 		});
 	}
