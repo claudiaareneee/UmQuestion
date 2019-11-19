@@ -17,30 +17,49 @@ function addNewQuestion(questionText){
 }
 
 function Confirm(){
-	var user = document.getElementById("userId").value;
-	var confirmUser = document.getElementById("confirmId").value;
-	var confirmText = document.getElementById("confirmTo").value;
+	var email_1 = document.getElementById("emailInput1").value;
+	var email_2 = document.getElementById("emailInput2").value;
+	var confirmText = document.getElementById("confirmText").value;
 	
-	if(user == confirmUser && user != "" && confirmUser != "" && confirmText == "confirm delete")
+	if(validateEmail(email_1) == true)
 	{
-        document.getElementById("userId").value = "";
-        document.getElementById("confirmId").value = "";
-        document.getElementById("doNotMatch").innerHTML = "";
-        
-        $('#deleteUser').modal('hide');
-
-        socket.emit('delete_user', user);
+		document.getElementById("invalidEmail").innerHTML = "";
+		
+		if(email_1 == email_2)
+		{
+			document.getElementById("doNotMatch").innerHTML = "";
+			document.getElementById("confirmError").innerHTML = "";
+			
+			if(confirmText == "confirm delete")
+			{
+			
+				document.getElementById("emailInput1").value = "";
+				document.getElementById("emailInput2").value = "";
+				document.getElementById("confirmError").innerHTML = "";
+				
+				$('#deleteUser').modal('hide');
+				socket.emit('delete_user', email_1);
+				
+			}
+			else
+			{
+				document.getElementById("confirmError").innerHTML = "Incorrect Input: type confirm delete"
+			}
+		}
+		else
+		{
+			document.getElementById("doNotMatch").innerHTML = "User ID's do not match and/or User ID cannot be empty";
+		}
 	}
 	else
 	{
-		document.getElementById("doNotMatch").innerHTML = "User ID's do not match and/or Usere ID cannot be empty";
-		alert("Failed");
+		document.getElementById("invalidEmail").innerHTML = "Invalid Format: Email Format";
 	}
 }
 
 function Cancel(){
-	document.getElementById("userId").value = "";
-	document.getElementById("confirmId").value = "";
+	document.getElementById("emailInput1").value = "";
+	document.getElementById("emailInput2").value = "";
 }
 
 var courseName = document.getElementById("courseName");
@@ -119,6 +138,20 @@ courseSearchButton.addEventListener("click", () => {
         }
     });
 });
+
+function validateEmail(email)
+	{
+		var validEmail = /[a-z0-9]+@[a-z]+[.][a-z]+$/;
+		
+		if(!validEmail.test(email.toLowerCase()) || email == "")
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 
 // TODO: I haven't made the UI for this yet, but a teacher needs to be able to delete a question
 function deleteQuestion(){

@@ -48,14 +48,16 @@
 					<div class="modal-body">
 						<form>
 							User ID:
-							<input id="userId" type="text" class="form-control" placeholder="Enter User ID">
+							<input id="emailInput1" type="text" class="form-control" placeholder="Enter User ID">
+							<span class="error" id="invalidEmail"></span>
 							<br>
 							Confirm User ID:
-							<input id="confirmId" type="text" class="form-control" placeholder="Confirm User ID">
+							<input id="emailInput2" type="text" class="form-control" placeholder="Confirm User ID">
 							<span class="error" id="doNotMatch"></span>
 							<br>
 							Type "confirm delete" to proceed:
-							<input id="confirmTo" type="text" class="form-control" placeholder="confirm delete">
+							<input id="confirmText" type="text" class="form-control" placeholder="confirm delete">
+							<span class="error" id="confirmError"></span>
 						</form>
 					</div>
 					<div class="modal-footer">
