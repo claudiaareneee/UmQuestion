@@ -13,6 +13,14 @@ function fetchPosts(courseId){
     }
 }
 
+var courseName = document.getElementById("courseName");
+
+socket.emit('fetch_single_course', sessionStorage.getItem('courseID'));
+socket.on('received_single_course', (name) => {
+    console.log(name);
+    courseName.innerText = name;
+});
+
 socket.on('update_UI', () => {
     fetchPosts();
 });
@@ -24,9 +32,6 @@ function addNewQuestion(questionText){
 
 contentContainer = document.getElementById("mainContent");
 contentContainer.appendChild(View.createNewPost());
-
-var courseName = document.getElementById("courseName");
-courseName.innerText = "Distributed Client/Server Programming";
 
 var newPostButton = document.getElementById("postQuestionButton");
 newPostButton.addEventListener("click", () => {

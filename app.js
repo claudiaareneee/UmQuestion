@@ -171,6 +171,12 @@ io.on('connection', function(socket){
 		let res1 = await client.query('SELECT * FROM course WHERE uid=$1', [dta]);
 		socket.emit('received_course', res1.rows);
 	});
+
+	socket.on('fetch_single_course', async function(dta){
+		console.log(dta);
+		let res1 = await client.query('SELECT * FROM course WHERE cid=$1', [dta]);
+		socket.emit('received_single_course', res1.rows[0].name);
+	});
 });
 
 http.listen(process.env.PORT || 3000, function(){
