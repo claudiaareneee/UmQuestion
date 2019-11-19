@@ -39,6 +39,14 @@ function Confirm(){
 				
 				$('#deleteUser').modal('hide');
 				socket.emit('delete_user', email_1);
+				socket.on('confirm_delete', function(dta){
+					if(dta == 1){
+						alert("User successfully Deleted.");
+					}
+					else{
+						alert("User does  not exist.");
+					}
+				});
 				
 			}
 			else

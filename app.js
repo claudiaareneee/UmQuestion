@@ -195,7 +195,8 @@ io.on('connection', function(socket){
 
 	socket.on('delete_user', async function(dta){
 		try {
-			let res = await client.query("DELETE FROM account WHERE email=$1",[dta]);	
+			let res = await client.query("DELETE FROM account WHERE email=$1 RETURNING *",[dta]);	
+			socket.emit('confirm_delete', res.rows.length);
 		} catch (error) {
 			console.log(error);
 		}
