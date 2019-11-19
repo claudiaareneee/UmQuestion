@@ -189,6 +189,10 @@ io.on('connection', function(socket){
 	socket.on('delete_post', async function(dta){
 		let res1 = await client.query("DELETE FROM post WHERE pid=" + dta);
 	});
+
+	socket.on('delete_user', async function(dta){
+		let res = await client.query("DELETE FROM account WHERE email=" + dta);
+	});
 });
 
 http.listen(process.env.PORT || 3000, function(){
