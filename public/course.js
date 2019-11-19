@@ -83,7 +83,7 @@ courseSearchButton.addEventListener("click", () => {
             alert("A course was not found matching this ID");
         } else {
             sessionStorage.setItem("courseID", searchInput.value);
-            fetchPosts(sessionStorage.getItem("courseID"));
+            window.location = "course.html";
         }
     });
 });
