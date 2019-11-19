@@ -143,6 +143,12 @@ io.on('connection', function(socket){
 	});    
   });
   
+  socket.on('add_answer', async function(dta){
+	let res1 = await client.query('INSERT INTO post(uid, cid, ptype, content) VALUES($1, $2, $3, $4) RETURNING pid', [dta.aID, dta.cID, 'a', dta.msg]);
+	let res2 = await client.query('INSERT INTO reply_to(replyid, originalid) VALUES($1, $2)', [res1.rows[0].pid, dta.qID]);
+	socket.emit('update_UI');    
+  });
+
   socket.on('searchingCourse', function(dta){
 	client.query('SELECT * from course WHERE cid=$1', [dta], (err, res) => {
 		console.log(err ? err.stack : res.rows[0]); // Hello World!

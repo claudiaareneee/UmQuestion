@@ -30,7 +30,7 @@ View.createAnswerView = function(answer){
     return li;
 };
 
-View.createAnswerListView = function(answers){
+View.createAnswerListView = function(question, answers){
     var ul = document.createElement("UL");
     ul.className = "list-group list-group-flush";
 
@@ -46,7 +46,7 @@ View.createAnswerListView = function(answers){
         ul.appendChild(answerLi);
     }
 
-    ul.appendChild(View.createNewAnswerView());
+    ul.appendChild(View.createNewAnswerView(question.postId));
 
     return ul;
 };
@@ -54,7 +54,7 @@ View.createAnswerListView = function(answers){
 View.createPost = function (question, answers){
     var container = document.createElement("DIV");
     var questionView = View.createQuestionView(question);
-    var answerListView = View.createAnswerListView(answers);
+    var answerListView = View.createAnswerListView(question, answers);
 
     questionView.appendChild(answerListView);
     container.appendChild(questionView);
@@ -92,21 +92,26 @@ View.createNewPost = function(){
     return container;
 };
 
-View.createNewAnswerView = function(){
+View.createNewAnswerView = function(questionPostId){
     var li = document.createElement("LI");
 
     var newAnswer = document.createElement("TEXTAREA");
-    var postAnser = document.createElement("BUTTON");
+    var postAnswer = document.createElement("BUTTON");
 
     newAnswer.className = "form-control w-100";
-    postAnser.className = "btn btn-primary float-right newPostButton";
+    postAnswer.className = "btn btn-primary float-right newPostButton";
     li.className = "list-group-item";
 
     newAnswer.setAttribute("placeholder", "Answer question...");
-    postAnser.innerText = "Post answer";
+    postAnswer.innerText = "Post answer";
     
+    postAnswer.addEventListener("click", () => {
+        var post = new Answer(sessionStorage.getItem("UserID"),sessionStorage.getItem("courseID"),questionPostId,newAnswer.value);
+        socket.emit("add_answer", {aID:post.authorId, cID: post.courseId, msg:post.message, qID: post.questionId});
+    });
+
     li.appendChild(newAnswer);
-    li.appendChild(postAnser);
+    li.appendChild(postAnswer);
 
     return li;
 };
