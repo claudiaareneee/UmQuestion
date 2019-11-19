@@ -48,7 +48,7 @@ io.on('connection', function(socket){
 	// For each question, get its answers. 
 	// [{question: {postID: , msg: , authorId: , endorseCount:} answers: [{postID: , msg: , questionID: , authorID: } , ...]}, ...]
 	var posts= [];
-	client.query('SELECT * FROM post WHERE cid = $1 AND ptype = q', [dta], (err, res) => { // Untested, but hopefully will work without too much trouble. 
+	client.query("SELECT * FROM post WHERE cid = $1 AND ptype = 'q'", [dta], (err, res) => { // Untested, but hopefully will work without too much trouble. 
 		console.log(err ? err.stack : res.rows[0]); // Hello World!
 		var y;
 		var endorse;
@@ -74,7 +74,7 @@ io.on('connection', function(socket){
   });
   
   socket.on('fetch_course_data',  function(dta){
-	  client.query('SELECT * FROM course WHERE cid=$1', [dta] (err, res) => {
+	  client.query('SELECT * FROM course WHERE cid=$1', [dta], (err, res) => {
 		console.log(err ? err.stack : res.rows[0]);
 		socket.emit('send_course_data', {teacher: res.rows[0].uid, name: res.rows[0].name});
 	  });
