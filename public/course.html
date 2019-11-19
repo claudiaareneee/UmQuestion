@@ -38,6 +38,34 @@
               </div>
           </div>
       </div>
+	  
+	  		<div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="Delete User" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="header">
+						<h4 class="modal-title" id="deleteUser">Delete User Test</h4>
+					</div>
+					<div class="modal-body">
+						<form>
+							User ID:
+							<input id="userId" type="text" class="form-control" placeholder="Enter User ID">
+							<br>
+							Confirm User ID:
+							<input id="confirmId" type="text" class="form-control" placeholder="Confirm User ID">
+							<span class="error" id="doNotMatch"></span>
+							<br>
+							Type "confirm delete" to proceed:
+							<input id="confirmTo" type="text" class="form-control" placeholder="confirm delete">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button onclick=Cancel() type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button onclick=Confirm() type="button" class="btn btn-primary">Confirm</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	  
       <div id="topBar"> 
         <h1 id="apptitle" class="w-100">Um, Question ☝️</h1>
       </div>

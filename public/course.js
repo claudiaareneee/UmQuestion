@@ -16,6 +16,32 @@ function addNewQuestion(questionText){
     socket.emit("add_question", {aID:post.authorId, cID: post.courseId, msg:post.message});
 }
 
+function Confirm(){
+	var user = document.getElementById("userId").value;
+	var confirmUser = document.getElementById("confirmId").value;
+	var confirmText = document.getElementById("confirmTo").value;
+	
+	if(user == confirmUser && user != "" && confirmUser != "" && confirmText == "confirm delete")
+	{
+	document.getElementById("userId").value = "";
+	document.getElementById("confirmId").value = "";
+	document.getElementById("doNotMatch").innerHTML = "";
+	
+	$('#deleteUser').modal('hide')
+	alert("Succesfull");
+	}
+	else
+	{
+		document.getElementById("doNotMatch").innerHTML = "User ID's do not match and/or Usere ID cannot be empty";
+		alert("Failed");
+	}
+}
+
+function Cancel(){
+	document.getElementById("userId").value = "";
+	document.getElementById("confirmId").value = "";
+}
+
 var courseName = document.getElementById("courseName");
 var courseIdcourseID = document.getElementById("courseID");
 
@@ -53,6 +79,11 @@ logoutButton.addEventListener("click", () => {
     sessionStorage.removeItem("userType");
     socket.emit('userLoggedOut');
     window.location = "/";
+});
+
+var deleteButton = document.getElementById("deleteButton");
+deleteButton.addEventListener("click", () => {
+	$('#deleteUser').modal('show')
 });
 
 var courseButton = document.getElementById("courseButton");
