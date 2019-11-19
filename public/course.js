@@ -20,7 +20,7 @@ socket.emit('fetch_single_course', sessionStorage.getItem('courseID'));
 socket.on('received_single_course', (name) => {
     console.log(name);
     courseName.innerText = name;
-    courseID.innerText =sessionStorage.getItem('courseID');
+    courseID.innerText = "Course ID: " + sessionStorage.getItem('courseID');
 });
 
 socket.on('update_UI', () => {
