@@ -54,8 +54,11 @@ io.on('connection', function(socket){
 		var endorse;
 		for (var x = 0; x < res.rows.length; x++){
 			client.query('SELECT COUNT(*) FROM endorses_post WHERE pid = $1', [res.rows[x].pid], (err, res) => {
+				if (res == null && res == undefined)
+					return;
+					
 				endorse = res.rows[0].count;
-				posts.push({question: {postID: res.rows[x].pid, msg: res.rows[x].content, authorID: res.rows[x].uid, endorseCount: endorse}, answers: []})
+				posts.push({question: {postID: res.rows[x].pid, msg: res.rows[x].content, authorID: res.rows[x].uid, endorseCount: endorse}, answers: []});
 				client.query('SELECT * FROM reply_to R, post P WHERE R.originalid = $1 AND R.replyid = P.pid', [x.pid], (err, res) => {
 					for(y of res.rows){
 						posts[x].answers.push({postID: y.pid, msg: y.content, authorID: y.uid});
