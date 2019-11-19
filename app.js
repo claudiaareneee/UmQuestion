@@ -42,7 +42,7 @@ client.end();},
 io.on('connection', function(socket){
   console.log('a user connected');
   
-  socket.on('fetch_posts', function(dta){ // Needs to return array of post Ids attached to a course ID
+  socket.on('fetch_posts', function(dta){ 
 	 //socket.emit('send_posts', [204, 205, 26]);
 	// First ask for all the questions related to the course.
 	// For each question, get its answers. 
@@ -122,6 +122,18 @@ io.on('connection', function(socket){
   socket.on('add_question', function(dta){
 	client.query('INSERT INTO post(uid, cid, ptype, content) VALUES($1, $2, $3, $4)', [dta.aID, dta.cID, 'q', dta.msg], (err, res) => {
 		console.log(err ? err.stack : res.rows[0]); // Hello World!
+	});    
+  });
+  
+  socket.on('searchingCourse', function(dta){
+	client.query('SELECT * from course', (err, res) => {
+		console.log(err ? err.stack : res.rows[0]); // Hello World!
+		if(err){
+			socket.emit('courseFound', 0);
+		}
+		else{
+			socket.emit('courseFound', 1);
+		}
 	});    
   });
   
