@@ -1,12 +1,15 @@
-function fetchPosts(){
-    socket.emit('fetch_posts', sessionStorage.getItem("courseID"));
-    var that = this;
-    socket.on('send_posts', function(dta){ // dta will be an object containing all of the questions in the course with their connected answers.
-        for (var post of dta){
-            var view = View.createPost(post.question, post.answers);
-            contentContainer.appendChild(view);
-        }
-    });
+function fetchPosts(courseId){
+    console.log(courseId);
+    if (courseId != ''){
+        socket.emit('fetch_posts', courseId);
+        var that = this;
+        socket.on('send_posts', function(dta){ // dta will be an object containing all of the questions in the course with their connected answers.
+            for (var post of dta){
+                var view = View.createPost(post.question, post.answers);
+                contentContainer.appendChild(view);
+            }
+        });
+    }
 }
 
 function addNewQuestion(questionText){
@@ -51,7 +54,7 @@ courseSearchButton.addEventListener("click", () => {
             alert("A course was not found matching this ID");
         } else {
             sessionStorage.setItem("courseID", searchInput.value);
-            fetchPosts();
+            fetchPosts(sessionStorage.getItem("courseID"));
         }
     });
 });
@@ -62,8 +65,7 @@ socket.on('courseFound', function(success){
     if(success == 0){
         alert("A course was not found matching this ID");
     } else {
-        sessionStorage.setItem("courseID", searchInput.value);
-        fetchPosts()
+        fetchPosts(1);
     }
 });
 

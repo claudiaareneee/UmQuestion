@@ -50,26 +50,29 @@ io.on('connection', function(socket){
 	var posts= [];
 	client.query("SELECT * FROM post WHERE cid = $1 AND ptype = 'q'", [dta], (err, res) => { // Untested, but hopefully will work without too much trouble. 
 		console.log(err ? err.stack : res.rows[0]); // Hello World!
-		var y;
-		var endorse;
+		
 		if (res == null || res == undefined){
 			console.log ("res is " + res);
 			return;
 		}
-		for (var x = 0; x < res.rows.length; x++){
-			client.query('SELECT COUNT(*) FROM endorses_post WHERE pid = $1', [res.rows[x].pid], (err, endorseRes) => {
-				if (res == null && res == undefined)
-					return;
-					
-				endorse = endorseRes.rows[0].count;
-				posts.push({question: {postID: res.rows[x].pid, msg: res.rows[x].content, authorID: res.rows[x].uid, endorseCount: endorse}, answers: []});
-				client.query('SELECT * FROM reply_to R, post P WHERE R.originalid = $1 AND R.replyid = P.pid', [x.pid], (err, answerRes) => {
-					for(y of answerRes.rows){
-						posts[x].answers.push({postID: y.pid, msg: y.content, authorID: y.uid});
-					}
-				});
+		var questionRes = res;
+		for (var x = 0; x < questionRes.rows.length; x++){
+			console.log(x + " " + questionRes.rows[x]);
+			if (questionRes == null && questionRes == undefined){
+				console.log("ERROR: questionRes is undefined or null");
+				return;
+			}
+						
+			posts.push({question: {postID: questionRes.rows[x].pid, msg: questionRes.rows[x].content, authorID: questionRes.rows[x].uid}, answers: []});
+			console.log(posts);
+			client.query('SELECT * FROM reply_to R, post P WHERE R.originalid = $1 AND R.replyid = P.pid', [x.pid], (err, answerRes) => {
+				for(var y of answerRes.rows){
+					console.log("Inside second for loop" + y);
+					posts[x].answers.push({postID: y.pid, msg: y.content, authorID: y.uid});
+				}
 			});
 		}
+		socket.emit('send_posts', posts);
 	});
   });
   
