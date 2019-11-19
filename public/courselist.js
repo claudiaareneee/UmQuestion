@@ -1,7 +1,6 @@
 // TODO: Get logged in user and logged in user type
 
 function fetchCourses(){
-    console.log(sessionStorage.getItem('UserID'));
     socket.emit('fetch_course', sessionStorage.getItem('UserID'));
     socket.on('received_course', (courses) => {
         console.log(courses);
