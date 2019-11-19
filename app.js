@@ -72,9 +72,14 @@ io.on('connection', function(socket){
 		}
 	});
   });
-  /*
-  [{question: blah, answers: []}]
-  */
+  
+  socket.on('fetch_course_data',  function(dta){
+	  client.query('SELECT * FROM course WHERE cid=$1', [dta] (err, res) => {
+		console.log(err ? err.stack : res.rows[0]);
+		socket.emit('send_course_data', {teacher: res.rows[0].uid, name: res.rows[0].name});
+	  });
+  });
+  
 
   socket.on('setLoggedIn', (isLoggedIn, userType) => {
 	  this.isLoggedIn = isLoggedIn;
