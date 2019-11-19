@@ -2,13 +2,14 @@
 
 var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
-    // TODO: HANDLE LOGGING OUT
+    sessionStorage.removeItem("UserID");
+    sessionStorage.removeItem("userType");
     window.location = "login.html";
 });
 
 var courseButton = document.getElementById("courseButton");
 courseButton.addEventListener("click", () => {
-    // TODO: HANDLE LOGGING OUT
+    // TODO: HANDLE GETTING COURSES
     window.location = "courselist.html";
 });
 

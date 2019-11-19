@@ -12,7 +12,14 @@
     
     <!-- Our custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-	
+    <script>
+      var userID = sessionStorage.getItem("UserID");
+      var userType = sessionStorage.getItem("userType");
+
+      if (userID == null || userType == null){
+          window.location = "/";
+      }
+    </script>
   </head>
   <body>
       <div class="info-bar">

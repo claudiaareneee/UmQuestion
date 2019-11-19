@@ -16,17 +16,17 @@ submitButton.onclick = function(){
 		}
 		else{
 			console.log(dbPassword);
-		if(password.value == dbPassword){
-		sessionStorage.setItem("userType", dta[1]); // 's' for student, 'a' for admin, 't' teacher.
-		sessionStorage.setItem("UserID", dta[2]);
-        window.location = "course.html";
+			if(password.value == dbPassword){
+				sessionStorage.setItem("userType", dta[1]); // 's' for student, 'a' for admin, 't' teacher.
+				sessionStorage.setItem("UserID", dta[2]);
+				socket.emit('setLoggedIn',[true, dta[2]]);
+				// window.location = "course.html";
+			}
+			else{
+				alert("Incorrect Password.");
+			}
 		}
-		else{
-			alert("Incorrect Password.");
-		}
-}
 	});
-	
 };
 
 var loginButton = document.getElementById("newUserButton");

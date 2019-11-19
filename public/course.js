@@ -1,5 +1,3 @@
-// TODO: Get logged in user and logged in user type
-
 function getPosts(){
     //TODO: Update this to pull from the database
     var posts = [];
@@ -51,13 +49,15 @@ newPostButton.addEventListener("click", () => {
 
 var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
-    // TODO: HANDLE LOGGING OUT
+    sessionStorage.removeItem("UserID");
+    sessionStorage.removeItem("userType");
+    socket.emit('userLoggedOut');
     window.location = "login.html";
 });
 
 var courseButton = document.getElementById("courseButton");
 courseButton.addEventListener("click", () => {
-    // TODO: HANDLE LOGGING OUT
+    // TODO: HANDLE GETTING COURSES
     window.location = "courselist.html";
 });
 

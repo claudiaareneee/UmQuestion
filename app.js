@@ -5,12 +5,21 @@ var io = require('socket.io')(http);
 var pg = require('pg');
 
 // var socket = io();
+var isLoggedIn = false;
+var userType = null;
 
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/public/login.html');
 });
+
+app.get('course.html', function(req, res){
+	if (isLoggedIn)
+		res.sendFile(__dirname + '/public/login.html');
+	else
+		res.sendFile(__dirname + '/public/course.html');
+  });
 
 var client = new pg.Client({
 	user: 'postgres',
@@ -59,6 +68,17 @@ io.on('connection', function(socket){
   /*
   [{question: blah, answers: []}]
   */
+
+  socket.on('setLoggedIn', (isLoggedIn, userType) => {
+	  this.isLoggedIn = isLoggedIn;
+	  this.userType = userType;
+  });
+
+  socket.on('userLoggedOut', () => {
+	this.isLoggedIn = false;
+	this.userType = null;
+	});
+  
   
   socket.on('fetch_users', function(dta){ // Needs to return array of user IDs attached to a course ID
 	socket.emit('send_users', [401, 402, 72]);
