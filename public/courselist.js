@@ -1,5 +1,14 @@
 // TODO: Get logged in user and logged in user type
 
+function fetchCourses(){
+    console.log(sessionStorage.getItem('UserID'));
+    socket.emit('fetch_course', sessionStorage.getItem('UserID'));
+    socket.on('received_course', (courses) => {
+        console.log(courses);
+        mainContent.appendChild(View.createCourseList(courses));
+    });
+}
+
 var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
     sessionStorage.removeItem("UserID");
@@ -28,15 +37,4 @@ courseSearchButton.addEventListener("click", () => {
     });
 });
 
-
-var courses = [
-    // TODO: get courses
-    // new Course(1234, "DCSP"),
-    // new Course(2345, "Intro to CSE"),
-    // new Course(3456, "Microprocessors"),
-    // new Course(4567, "Art History"),
-    // new Course(5678, "Qudditch")
-];
-
-var mainContent = document.getElementById("mainContent");
-mainContent.appendChild(View.createCourseList(courses));
+fetchCourses();

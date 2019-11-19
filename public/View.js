@@ -132,7 +132,7 @@ View.createCourseList = function(courses) {
         gotoCourseBtn.className = "btn btn-primary course-page-item";
         deleteCourseBtn.className = "btn btn-danger course-page-item";
 
-        text.innerText = "Name: " + course.courseName + " · Course ID: " + course.courseID;
+        text.innerText = "Name: " + course.name + " · Course ID: " + course.cid;
         gotoCourseBtn.innerText = "Go to course";
         deleteCourseBtn.innerText = "Delete course";
 
