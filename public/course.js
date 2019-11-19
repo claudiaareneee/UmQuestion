@@ -52,7 +52,7 @@ logoutButton.addEventListener("click", () => {
     sessionStorage.removeItem("UserID");
     sessionStorage.removeItem("userType");
     socket.emit('userLoggedOut');
-    window.location = "login.html";
+    window.location = "/";
 });
 
 var courseButton = document.getElementById("courseButton");

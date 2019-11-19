@@ -4,7 +4,8 @@ var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
     sessionStorage.removeItem("UserID");
     sessionStorage.removeItem("userType");
-    window.location = "login.html";
+    socket.emit('userLoggedOut');
+    window.location = "/";
 });
 
 var courseButton = document.getElementById("courseButton");
