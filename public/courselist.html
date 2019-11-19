@@ -16,8 +16,10 @@
       var userID = sessionStorage.getItem("UserID");
       var userType = sessionStorage.getItem("userType");
 
-      if (userID == null || userType != 't'){
+      if (userID == null || userType == null){
           window.location = "/";
+      } else if (userType != 't'){
+          window.location = 'course.html';
       }
     </script>
   </head>
