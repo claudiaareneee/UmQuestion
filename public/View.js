@@ -140,8 +140,11 @@ View.createCourseList = function(courses) {
             sessionStorage.setItem('courseID', course.cid);
             window.location = 'course.html';
         });
-        
-        // TODO: handle delete course button - this might need to be done in courselist.js but you do you
+
+        deleteCourseBtn.addEventListener('click', () => {
+            socket.emit('delete_course', course.cid);
+            window.location = 'courselist.html';
+        });
 
         div.appendChild(text);
         div.appendChild(gotoCourseBtn);
@@ -157,6 +160,7 @@ View.createCourseList = function(courses) {
 
     createCourseButton.addEventListener("click", () => {
         socket.emit("create_course", {uID: sessionStorage.getItem("UserID"), name: createCourseName.value});
+        window.location = 'courselist.html';
     });
 
     // TODO: handle create Course Button - this might need to be done in courselist.js but you do you
