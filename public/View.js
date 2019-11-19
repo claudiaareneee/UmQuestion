@@ -23,7 +23,8 @@ View.createQuestionView = function(question){
         window.location = "course.html";
     });
 
-    header.appendChild(icon);
+    if(sessionStorage.getItem("userType") != 's')
+        header.appendChild(icon);
     messageContainer.appendChild(header);
 
     return messageContainer;
@@ -43,7 +44,8 @@ View.createAnswerView = function(answer){
         window.location = "course.html";
     });
 
-    li.appendChild(icon);
+    if(sessionStorage.getItem("userType") != 's')
+        li.appendChild(icon);
     
     return li;
 };
@@ -62,10 +64,12 @@ View.createAnswerListView = function(question, answers){
         answerLi.className = "list-group-item unansweredQuestion";
         answerLi.innerHTML = "There are no answers yet";
         
+        
         ul.appendChild(answerLi);
     }
 
-    ul.appendChild(View.createNewAnswerView(question.postId));
+    if(sessionStorage.getItem("userType") != 's')
+        ul.appendChild(View.createNewAnswerView(question.postId));
 
     return ul;
 };

@@ -32,7 +32,6 @@ socket.on('update_UI', () => {
     fetchPosts(courseId);
 });
 
-
 var courseId = sessionStorage.getItem("courseID");
 if (courseId == null || courseId == undefined || courseId == "")
     courseId = 1;
@@ -47,6 +46,8 @@ newPostButton.addEventListener("click", () => {
     window.location = "/course.html";
 });
 
+var deleteButton = document.getElementById("deleteButton");
+
 var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
     sessionStorage.removeItem("UserID");
@@ -60,6 +61,14 @@ courseButton.addEventListener("click", () => {
     // TODO: HANDLE GETTING COURSES
     window.location = "courselist.html";
 });
+
+if(sessionStorage.getItem("userType") == 's'){
+    deleteButton.remove();
+    courseButton.remove();
+    document.getElementById("divider1").remove();
+    document.getElementById("divider2").remove();
+}
+    
 
 var courseSearchButton = document.getElementById("courseSearchButton");
 courseSearchButton.addEventListener("click", () => {
