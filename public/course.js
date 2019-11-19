@@ -14,11 +14,13 @@ function fetchPosts(courseId){
 }
 
 var courseName = document.getElementById("courseName");
+var courseID = document.getElementById("courseID");
 
 socket.emit('fetch_single_course', sessionStorage.getItem('courseID'));
 socket.on('received_single_course', (name) => {
     console.log(name);
     courseName.innerText = name;
+    courseID.innerText =sessionStorage.getItem('courseID');
 });
 
 socket.on('update_UI', () => {
