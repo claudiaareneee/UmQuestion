@@ -52,6 +52,10 @@ io.on('connection', function(socket){
 		console.log(err ? err.stack : res.rows[0]); // Hello World!
 		var y;
 		var endorse;
+		if (res == null || res == undefined){
+			console.log ("res is " + res);
+			return;
+		}
 		for (var x = 0; x < res.rows.length; x++){
 			client.query('SELECT COUNT(*) FROM endorses_post WHERE pid = $1', [res.rows[x].pid], (err, res) => {
 				if (res == null && res == undefined)
@@ -126,7 +130,7 @@ io.on('connection', function(socket){
   });
   
   socket.on('searchingCourse', function(dta){
-	client.query('SELECT * from course', (err, res) => {
+	client.query('SELECT * from course WHERE cid=$1', [dta], (err, res) => {
 		console.log(err ? err.stack : res.rows[0]); // Hello World!
 		if(err){
 			socket.emit('courseFound', 0);
