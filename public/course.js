@@ -1,11 +1,9 @@
-var testingthis;
 function fetchPosts(courseId){
     if (courseId != ''){
         socket.emit('fetch_posts', courseId);
         var that = this;
         socket.on('send_posts', function(dta){ // dta will be an object containing all of the questions in the course with their connected answers.
             for (var post of dta){
-                testingthis = post;
                 var view = View.createPost(post.question, post.answers);
                 contentContainer.appendChild(view);
             }
@@ -13,24 +11,31 @@ function fetchPosts(courseId){
     }
 }
 
-var courseName = document.getElementById("courseName");
-var courseID = document.getElementById("courseID");
-
-socket.emit('fetch_single_course', sessionStorage.getItem('courseID'));
-socket.on('received_single_course', (name) => {
-    console.log(name);
-    courseName.innerText = name;
-    courseID.innerText = "Course ID: " + sessionStorage.getItem('courseID');
-});
-
-socket.on('update_UI', () => {
-    fetchPosts();
-});
-
 function addNewQuestion(questionText){
     var post = new Question(sessionStorage.UserID, sessionStorage.courseID, questionText);
     socket.emit("add_question", {aID:post.authorId, cID: post.courseId, msg:post.message});
 }
+
+var courseName = document.getElementById("courseName");
+var courseIdcourseID = document.getElementById("courseID");
+
+socket.emit('fetch_single_course', sessionStorage.getItem('courseID'));
+socket.on('received_single_course', (name) => {
+    if (name != undefined || name != null){
+        courseName.innerText = name;
+        courseID.innerText = "Course ID: " + sessionStorage.getItem('courseID');
+        fetchPosts(sessionStorage.getItem('courseID'));
+    }
+});
+
+socket.on('update_UI', () => {
+    fetchPosts(courseId);
+});
+
+
+var courseId = sessionStorage.getItem("courseID");
+if (courseId == null || courseId == undefined || courseId == "")
+    courseId = 1;
 
 contentContainer = document.getElementById("mainContent");
 contentContainer.appendChild(View.createNewPost());
@@ -67,16 +72,6 @@ courseSearchButton.addEventListener("click", () => {
             fetchPosts(sessionStorage.getItem("courseID"));
         }
     });
-});
-
-
-socket.emit('searchingCourse', 1);
-socket.on('courseFound', function(success){
-    if(success == 0){
-        alert("A course was not found matching this ID");
-    } else {
-        fetchPosts(1);
-    }
 });
 
 // TODO: I haven't made the UI for this yet, but a teacher needs to be able to delete a question
