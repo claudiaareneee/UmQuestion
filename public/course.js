@@ -65,6 +65,12 @@ function Cancel(){
 var courseName = document.getElementById("courseName");
 var courseIdcourseID = document.getElementById("courseID");
 
+var courseId = sessionStorage.getItem("courseID");
+if (courseId == null || courseId == undefined || courseId == ""){
+    sessionStorage.setItem('courseID', 6);
+}
+    
+
 socket.emit('fetch_single_course', sessionStorage.getItem('courseID'));
 socket.on('received_single_course', (name) => {
     if (name != undefined || name != null){
@@ -73,14 +79,13 @@ socket.on('received_single_course', (name) => {
         fetchPosts(sessionStorage.getItem('courseID'));
     }
 });
-
-socket.on('update_UI', () => {
-    fetchPosts(courseId);
+socket.on('failed_received_single_course', () => {
+    alert("A course with this ID does not exist");
 });
 
-var courseId = sessionStorage.getItem("courseID");
-if (courseId == null || courseId == undefined || courseId == "")
-    courseId = 1;
+socket.on('update_UI', () => {
+    fetchPosts(sessionStorage.getItem("courseID"));
+});
 
 contentContainer = document.getElementById("mainContent");
 contentContainer.appendChild(View.createNewPost());

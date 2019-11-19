@@ -178,8 +178,11 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('fetch_single_course', async function(dta){
-			let res1 = await client.query("SELECT * FROM course WHERE cid="+ dta);
+		let res1 = await client.query("SELECT * FROM course WHERE cid="+ dta);
+		if(res1.rows[0] != null || res1.rows[0] != undefined)
 			socket.emit('received_single_course', res1.rows[0].name);
+		else 
+			socket.emit('failed_received_single_course');
 	});
 
 	socket.on('delete_course', async function(dta){
