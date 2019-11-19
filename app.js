@@ -191,7 +191,11 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('delete_user', async function(dta){
-		let res = await client.query("DELETE FROM account WHERE email=" + dta);
+		try {
+			let res = await client.query("DELETE FROM account WHERE email=$1",[dta]);	
+		} catch (error) {
+			console.log(error);
+		}
 	});
 });
 

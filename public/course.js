@@ -23,12 +23,13 @@ function Confirm(){
 	
 	if(user == confirmUser && user != "" && confirmUser != "" && confirmText == "confirm delete")
 	{
-	document.getElementById("userId").value = "";
-	document.getElementById("confirmId").value = "";
-	document.getElementById("doNotMatch").innerHTML = "";
-	
-	$('#deleteUser').modal('hide')
-	alert("Succesfull");
+        document.getElementById("userId").value = "";
+        document.getElementById("confirmId").value = "";
+        document.getElementById("doNotMatch").innerHTML = "";
+        
+        $('#deleteUser').modal('hide');
+
+        socket.emit('delete_user', user);
 	}
 	else
 	{
@@ -85,7 +86,7 @@ logoutButton.addEventListener("click", () => {
 
 var deleteButton = document.getElementById("deleteButton");
 deleteButton.addEventListener("click", () => {
-	$('#deleteUser').modal('show')
+	$('#deleteUser').modal('show');
 });
 
 var courseButton = document.getElementById("courseButton");
