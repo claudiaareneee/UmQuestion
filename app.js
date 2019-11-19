@@ -42,38 +42,49 @@ client.end();},
 io.on('connection', function(socket){
   console.log('a user connected');
   
-  socket.on('fetch_posts', function(dta){ 
+  socket.on('fetch_posts', async function(dta){ 
 	 //socket.emit('send_posts', [204, 205, 26]);
 	// First ask for all the questions related to the course.
 	// For each question, get its answers. 
 	// [{question: {postID: , msg: , authorId: , endorseCount:} answers: [{postID: , msg: , questionID: , authorID: } , ...]}, ...]
-	var posts= [];
-	client.query("SELECT * FROM post WHERE cid = $1 AND ptype = 'q'", [dta], (err, res) => { // Untested, but hopefully will work without too much trouble. 
-		console.log(err ? err.stack : res.rows[0]); // Hello World!
-		
+	var posts = [];
+	try {
+		let res = await client.query("SELECT * FROM post WHERE cid = " + dta + " AND ptype = 'q'");
+
+		console.log(res.rows[0]); 
 		if (res == null || res == undefined){
 			console.log ("res is " + res);
 			return;
 		}
-		var questionRes = res;
-		for (var x = 0; x < questionRes.rows.length; x++){
-			console.log(x + " " + questionRes.rows[x]);
-			if (questionRes == null && questionRes == undefined){
+
+		for (let x = 0; x < res.rows.length; x++) {
+			// const  = res.rows[x];
+			if (res == null && res == undefined){
 				console.log("ERROR: questionRes is undefined or null");
 				return;
 			}
-						
-			posts.push({question: {postID: questionRes.rows[x].pid, msg: questionRes.rows[x].content, authorID: questionRes.rows[x].uid}, answers: []});
-			console.log(posts);
-			client.query('SELECT * FROM reply_to R, post P WHERE R.originalid = $1 AND R.replyid = P.pid', [x.pid], (err, answerRes) => {
-				for(var y of answerRes.rows){
+
+			posts[x] = {question: {postId: res.rows[x].pid, message: res.rows[x].content, authorId: res.rows[x].uid}, answers: []};
+			console.log (posts[x] + 'a');
+			console.log (posts[x].answers + 'a');
+
+			try {
+				let answerRes = await client.query('SELECT * FROM reply_to R, post P WHERE R.originalid = '+ res.rows[x].pid +' AND R.replyid = P.pid');
+				for (let y = 0; y < answerRes.rows.length; y++) {
 					console.log("Inside second for loop" + y);
-					posts[x].answers.push({postID: y.pid, msg: y.content, authorID: y.uid});
+					console.log("posts[x]" + posts[x]);
+					console.log("posts[x].answers" + posts[x].answers);
+					posts[x].answers.push({postId: answerRes.rows[y].pid, message: answerRes.rows[y].content, authorId: answerRes.rows[y].uid});
 				}
-			});
+			} catch (err) {
+				console.log(err);
+			}
 		}
-		socket.emit('send_posts', posts);
-	});
+
+	} catch (err) {
+		console.log(err);
+	}
+	socket.emit('send_posts', posts);
   });
   
   socket.on('fetch_course_data',  function(dta){

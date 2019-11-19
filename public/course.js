@@ -1,10 +1,14 @@
+var testingthis;
 function fetchPosts(courseId){
     console.log(courseId);
     if (courseId != ''){
         socket.emit('fetch_posts', courseId);
         var that = this;
         socket.on('send_posts', function(dta){ // dta will be an object containing all of the questions in the course with their connected answers.
+            console.log(dta);
             for (var post of dta){
+                testingthis = post;
+                console.log(post);
                 var view = View.createPost(post.question, post.answers);
                 contentContainer.appendChild(view);
             }
