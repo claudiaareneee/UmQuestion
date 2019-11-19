@@ -1,7 +1,11 @@
 // TODO: Get logged in user and logged in user type
 
 function fetchCourses(){
-    socket.emit('fetch_course', sessionStorage.getItem('UserID'));
+    if(sessionStorage.getItem("userType") == 'a'){
+        socket.emit('fetch_course_admin');
+    } else {
+        socket.emit('fetch_course', sessionStorage.getItem('UserID'));   
+    }
     socket.on('received_course', (courses) => {
         console.log(courses);
         mainContent.appendChild(View.createCourseList(courses));
