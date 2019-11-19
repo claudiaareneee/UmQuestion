@@ -149,8 +149,11 @@ View.createCourseList = function(courses) {
     var createCourseLi = document.createElement("LI");
     var createCourseDiv = document.createElement("DIV");
     var createCourseName = document.createElement("INPUT");
-    var createCourseID = document.createElement("INPUT");
     var createCourseButton = document.createElement("BUTTON");
+
+    createCourseButton.addEventListener("click", () => {
+        socket.emit("create_course", {uID: sessionStorage.getItem("UserID"), name: createCourseName.value});
+    });
 
     // TODO: handle create Course Button - this might need to be done in courselist.js but you do you
 
@@ -158,14 +161,11 @@ View.createCourseList = function(courses) {
     createCourseButton.className = "btn btn-primary course-page-item";
     createCourseDiv.className = "form-inline";
     createCourseName.className = "course-page-item form-control";
-    createCourseID.className = "course-page-item form-control";
 
     createCourseButton.innerText = "New Course";
     createCourseName.setAttribute("placeholder", "Course Name");    
-    createCourseID.setAttribute("placeholder", "Course ID");
 
     createCourseDiv.appendChild(createCourseName);
-    createCourseDiv.appendChild(createCourseID);
     createCourseDiv.appendChild(createCourseButton);
     createCourseLi.appendChild(createCourseDiv);
 

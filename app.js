@@ -161,6 +161,10 @@ io.on('connection', function(socket){
 	});    
   });
   
+	socket.on('create_course', async function(dta){
+		let res1 = await client.query('INSERT INTO course(uid, name) VALUES($1, $2)', [dta.uID, dta.name]);
+		socket.emit('update_UI');    
+	});
 });
 
 http.listen(process.env.PORT || 3000, function(){
