@@ -136,7 +136,11 @@ View.createCourseList = function(courses) {
         gotoCourseBtn.innerText = "Go to course";
         deleteCourseBtn.innerText = "Delete course";
 
-        // TODO: handle go to course button - this might need to be done in courselist.js but you do you
+        gotoCourseBtn.addEventListener('click', () => {
+            sessionStorage.setItem('courseID', course.cid);
+            window.location = 'course.html';
+        });
+        
         // TODO: handle delete course button - this might need to be done in courselist.js but you do you
 
         div.appendChild(text);

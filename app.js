@@ -171,9 +171,6 @@ io.on('connection', function(socket){
 		let res1 = await client.query('SELECT * FROM course WHERE uid=$1', [dta]);
 		socket.emit('received_course', res1.rows);
 	});
-
-	
-	
 });
 
 http.listen(process.env.PORT || 3000, function(){
