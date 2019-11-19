@@ -107,6 +107,10 @@ p {
 .course-page-item {
     margin-right: 1rem;
 }
+
+.error{
+	color: #FF0000;
+}
 /* .lightText {
     color: var(--primary-text-color-subheadding);
     font-size: .75em;
