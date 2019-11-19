@@ -21,6 +21,9 @@ courseSearchButton.addEventListener("click", () => {
     socket.on('courseFound', function(success){
         if(success == 0){
             alert("A course was not found matching this ID");
+        } else {
+            sessionStorage.setItem("courseID", searchInput.value);
+            window.location = 'course.html';
         }
     });
 });

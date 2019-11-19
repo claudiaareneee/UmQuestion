@@ -26,12 +26,13 @@ class Answer {
 }
 
 class Course{
-	constructor(courseID, courseName){
+	constructor(courseID){
 		this.courseID = courseID;
-		this.courseName = courseName;
-		this.posts = this.fetchPosts();
-		this.userIDs = this.fetchUsers();
-		this.teacherID = this.fetchTeacher();
+		this.courseName = null;
+		this.posts = null;
+		this.teacherID = null;
+		this.fetchData();
+		this.fetchPosts();
 	}
 	fetchPosts(){
 		socket.emit('fetch_posts', this.courseID);
@@ -40,18 +41,12 @@ class Course{
 			that.posts = dta;
 		});
 	}
-	fetchUsers(){
-		socket.emit('fetch_users', this.courseID);
+	fetchData(){
+		socket.emit('fetch_course_data', this.courseID);
 		var that = this;
-		socket.on('send_users', function(dta){ // dta is an array of userID's attached to the given course;
-			that.userIDs = dta;
-		});
-	}
-	fetchTeacher(){
-		socket.emit('fetch_teacher', this.courseID);
-		var that = this;
-		socket.on('send_teacher', function(dta){ // dta is the ID of the teacher in charge of the course.
-			that.teacherID = dta;
+		socket.on('send_course_data', function(dta){ // dta is the ID of the teacher in charge of the course.
+			that.teacherID = dta.teacher;
+			that.courseName = dta.name;
 		});
 	}
 }

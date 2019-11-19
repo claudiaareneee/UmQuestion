@@ -29,6 +29,13 @@ function addNewQuestion(questionText){
     alert(questionText);
 }
 
+function loadCourse() {
+    socket.emit('loadCourse', sessionStorage.getItem("courseID"));
+    socket.on('recieveCourse', () => {
+
+    });
+}
+
 contentContainer = document.getElementById("mainContent");
 contentContainer.appendChild(View.createNewPost());
 
