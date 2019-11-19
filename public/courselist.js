@@ -14,9 +14,15 @@ courseButton.addEventListener("click", () => {
     window.location = "courselist.html";
 });
 
+var searchInput = document.getElementById("searchCourseInput");
 var courseSearchButton = document.getElementById("courseSearchButton");
 courseSearchButton.addEventListener("click", () => {
-    // TODO: Handle navigating to course
+    socket.emit('searchingCourse', searchInput.value);
+    socket.on('courseFound', function(success){
+        if(success == 0){
+            alert("A course was not found matching this ID");
+        }
+    });
 });
 
 
