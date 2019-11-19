@@ -12,7 +12,9 @@ submitButton.onclick = function(){
 	socket.on("Login_return", function(dta){
 		dbPassword = dta[0];
 		if(dbPassword == -1){
-			alert("An account with this email does not exist.");
+			email.className += " is-invalid";
+			password.className += " is-invalid";
+			document.getElementById("errorText").style.visibility = 'visible';
 		}
 		else{
 			console.log(dbPassword);
@@ -23,7 +25,9 @@ submitButton.onclick = function(){
 				window.location = "course.html";
 			}
 			else{
-				alert("Incorrect Password.");
+				email.className += " is-invalid";
+				password.className += " is-invalid";
+				document.getElementById("errorText").style.visibility = 'visible';
 			}
 		}
 	});
