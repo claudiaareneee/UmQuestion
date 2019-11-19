@@ -58,7 +58,6 @@ socket.on('update_UI', () => {
     fetchPosts(courseId);
 });
 
-
 var courseId = sessionStorage.getItem("courseID");
 if (courseId == null || courseId == undefined || courseId == "")
     courseId = 1;
@@ -73,10 +72,13 @@ newPostButton.addEventListener("click", () => {
     window.location = "/course.html";
 });
 
+var deleteButton = document.getElementById("deleteButton");
+
 var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
     sessionStorage.removeItem("UserID");
     sessionStorage.removeItem("userType");
+    sessionStorage.removeItem("courseID");
     socket.emit('userLoggedOut');
     window.location = "/";
 });
@@ -92,6 +94,18 @@ courseButton.addEventListener("click", () => {
     window.location = "courselist.html";
 });
 
+if(sessionStorage.getItem("userType") == 's'){
+    deleteButton.remove();
+    courseButton.remove();
+    document.getElementById("divider1").remove();
+    document.getElementById("divider2").remove();
+}
+
+if(sessionStorage.getItem("userType") == 't'){
+    deleteButton.remove();
+    document.getElementById("divider1").remove();
+}
+
 var courseSearchButton = document.getElementById("courseSearchButton");
 courseSearchButton.addEventListener("click", () => {
     socket.emit('searchingCourse', searchInput.value);
@@ -100,7 +114,7 @@ courseSearchButton.addEventListener("click", () => {
             alert("A course was not found matching this ID");
         } else {
             sessionStorage.setItem("courseID", searchInput.value);
-            fetchPosts(sessionStorage.getItem("courseID"));
+            window.location = "course.html";
         }
     });
 });
