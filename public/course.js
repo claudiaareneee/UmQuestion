@@ -17,23 +17,45 @@ function addNewQuestion(questionText){
 }
 
 function Confirm(){
+	var count = 0;
+	
 	var email_1 = document.getElementById("emailInput1").value;
 	var email_2 = document.getElementById("emailInput2").value;
 	var confirmText = document.getElementById("confirmText").value;
 	
-	if(validateEmail(email_1) == true)
+	if(validateEmail(email_1) == false)
+	{
+		count++;
+		document.getElementById("invalidEmail").innerHTML = "Invalid Format: Email Format";
+	}
+	else
 	{
 		document.getElementById("invalidEmail").innerHTML = "";
-		
-		if(email_1 == email_2)
-		{
-			document.getElementById("doNotMatch").innerHTML = "";
-			document.getElementById("confirmError").innerHTML = "";
-			
-			if(confirmText == "confirm delete")
-			{
-			
-				document.getElementById("emailInput1").value = "";
+	}
+	
+	if(email_1 != email_2 || email_1 == "" || email_2 == "")
+	{
+		count++;
+		document.getElementById("doNotMatch").innerHTML = "Email fields do not match";
+	}
+	else
+	{
+		document.getElementById("doNotMatch").innerHTML = "";
+	}
+	
+	if(confirmText != "confirm delete" || confirmText == "")
+	{
+		count++;
+		document.getElementById("confirmError").innerHTML = "Type: confirm delete";
+	}
+	else
+	{
+		document.getElementById("confirmError").innerHTML = "";
+	}
+	
+	if(count == 0)
+	{
+		document.getElementById("emailInput1").value = "";
 				document.getElementById("emailInput2").value = "";
 				document.getElementById("confirmError").innerHTML = "";
 				
@@ -47,21 +69,6 @@ function Confirm(){
 						alert("User does  not exist.");
 					}
 				});
-				
-			}
-			else
-			{
-				document.getElementById("confirmError").innerHTML = "Incorrect Input: type confirm delete"
-			}
-		}
-		else
-		{
-			document.getElementById("doNotMatch").innerHTML = "User ID's do not match and/or User ID cannot be empty";
-		}
-	}
-	else
-	{
-		document.getElementById("invalidEmail").innerHTML = "Invalid Format: Email Format";
 	}
 }
 
