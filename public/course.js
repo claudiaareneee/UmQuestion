@@ -52,6 +52,7 @@ var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
     sessionStorage.removeItem("UserID");
     sessionStorage.removeItem("userType");
+    sessionStorage.removeItem("courseID");
     socket.emit('userLoggedOut');
     window.location = "/";
 });
