@@ -140,6 +140,21 @@ View.createNewAnswerView = function(questionPostId){
     return li;
 };
 
+function addGotoOnClickListener(courseID, button){
+    button.addEventListener('click', () => {
+        console.log(courseID);
+        sessionStorage.setItem('courseID', courseID);
+        window.location = 'course.html';
+    });
+}
+
+function addDeleteCourseOnClickListener(courseID, button){
+    button.addEventListener('click', () => {
+        socket.emit('delete_course', courseID);
+        window.location = 'courselist.html';
+    });
+}
+
 View.createCourseList = function(courses) {
     var ul = document.createElement("UL");
     ul.className ="list-group list-group-flush";
@@ -160,15 +175,8 @@ View.createCourseList = function(courses) {
         gotoCourseBtn.innerText = "Go to course";
         deleteCourseBtn.innerText = "Delete course";
 
-        gotoCourseBtn.addEventListener('click', () => {
-            sessionStorage.setItem('courseID', course.cid);
-            window.location = 'course.html';
-        });
-
-        deleteCourseBtn.addEventListener('click', () => {
-            socket.emit('delete_course', course.cid);
-            window.location = 'courselist.html';
-        });
+        addGotoOnClickListener(course.cid, gotoCourseBtn);
+        addDeleteCourseOnClickListener (course.cid, deleteCourseBtn);
 
         div.appendChild(text);
         div.appendChild(gotoCourseBtn);
