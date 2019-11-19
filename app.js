@@ -50,8 +50,7 @@ io.on('connection', function(socket){
 	var posts = [];
 	try {
 		let res = await client.query("SELECT * FROM post WHERE cid = " + dta + " AND ptype = 'q'");
-
-		console.log(res.rows[0]); 
+ 
 		if (res == null || res == undefined){
 			console.log ("res is " + res);
 			return;
@@ -65,15 +64,10 @@ io.on('connection', function(socket){
 			}
 
 			posts[x] = {question: {postId: res.rows[x].pid, message: res.rows[x].content, authorId: res.rows[x].uid}, answers: []};
-			console.log (posts[x] + 'a');
-			console.log (posts[x].answers + 'a');
 
 			try {
 				let answerRes = await client.query('SELECT * FROM reply_to R, post P WHERE R.originalid = '+ res.rows[x].pid +' AND R.replyid = P.pid');
 				for (let y = 0; y < answerRes.rows.length; y++) {
-					console.log("Inside second for loop" + y);
-					console.log("posts[x]" + posts[x]);
-					console.log("posts[x].answers" + posts[x].answers);
 					posts[x].answers.push({postId: answerRes.rows[y].pid, message: answerRes.rows[y].content, authorId: answerRes.rows[y].uid});
 				}
 			} catch (err) {
@@ -145,6 +139,7 @@ io.on('connection', function(socket){
   socket.on('add_question', function(dta){
 	client.query('INSERT INTO post(uid, cid, ptype, content) VALUES($1, $2, $3, $4)', [dta.aID, dta.cID, 'q', dta.msg], (err, res) => {
 		console.log(err ? err.stack : res.rows[0]); // Hello World!
+		socket.emit('update_UI');
 	});    
   });
   

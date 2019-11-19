@@ -1,14 +1,11 @@
 var testingthis;
 function fetchPosts(courseId){
-    console.log(courseId);
     if (courseId != ''){
         socket.emit('fetch_posts', courseId);
         var that = this;
         socket.on('send_posts', function(dta){ // dta will be an object containing all of the questions in the course with their connected answers.
-            console.log(dta);
             for (var post of dta){
                 testingthis = post;
-                console.log(post);
                 var view = View.createPost(post.question, post.answers);
                 contentContainer.appendChild(view);
             }
@@ -16,12 +13,13 @@ function fetchPosts(courseId){
     }
 }
 
-function addNewQuestion(questionText){
-    var post = new Question(sessionStorage.userID, sessionStorage.courseID, questionText);
-	socket.emit("add_question", {aID:post.authorID, cID: post.courseID, msg:post.message});
-    // TODO: Re call fetch posts
+socket.on('update_UI', () => {
+    fetchPosts();
+});
 
-    alert(questionText);
+function addNewQuestion(questionText){
+    var post = new Question(sessionStorage.UserID, sessionStorage.courseID, questionText);
+    socket.emit("add_question", {aID:post.authorId, cID: post.courseId, msg:post.message});
 }
 
 contentContainer = document.getElementById("mainContent");
@@ -34,6 +32,7 @@ var newPostButton = document.getElementById("postQuestionButton");
 newPostButton.addEventListener("click", () => {
     var questionText = document.getElementById("newQuestion").value;
     addNewQuestion(questionText);
+    window.location = "/course.html";
 });
 
 var logoutButton = document.getElementById("logoutButton");
