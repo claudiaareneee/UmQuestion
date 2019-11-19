@@ -9,13 +9,21 @@ var View = {};
 View.createQuestionView = function(question){
     var messageContainer = document.createElement("DIV");
     var header = document.createElement("DIV");
+    var icon = document.createElement("I");
     
     // messageContainer.className = "questionContainer container card w-75";
     messageContainer.className = "questionContainer card";
+    icon.className = "fa fa-trash-o float-right color-red";
     // p.className = "card-text";
     header.className = "card-header";
     header.innerHTML = question.message;
 
+    icon.addEventListener('click', () => {
+        socket.emit('delete_post', question.postId);
+        window.location = "course.html";
+    });
+
+    header.appendChild(icon);
     messageContainer.appendChild(header);
 
     return messageContainer;
@@ -23,9 +31,19 @@ View.createQuestionView = function(question){
 
 View.createAnswerView = function(answer){
     var li = document.createElement("LI");
+    var icon = document.createElement("I");
 
     li.className = "list-group-item";
+    icon.className = "fa fa-trash-o float-right color-red";
+
     li.innerHTML = answer.message;
+
+    icon.addEventListener('click', () => {
+        socket.emit('delete_post', answer.postId);
+        window.location = "course.html";
+    });
+
+    li.appendChild(icon);
     
     return li;
 };
@@ -40,9 +58,10 @@ View.createAnswerListView = function(question, answers){
     }
 
     if (answers.length == 0){
-        answer = new Answer(0,0,0,"There are no answers yet");
-        var answerLi = View.createAnswerView(answer);
-        answerLi.className += " unansweredQuestion";
+        var answerLi = document.createElement("LI");
+        answerLi.className = "list-group-item unansweredQuestion";
+        answerLi.innerHTML = "There are no answers yet";
+        
         ul.appendChild(answerLi);
     }
 
@@ -108,6 +127,7 @@ View.createNewAnswerView = function(questionPostId){
     postAnswer.addEventListener("click", () => {
         var post = new Answer(sessionStorage.getItem("UserID"),sessionStorage.getItem("courseID"),questionPostId,newAnswer.value);
         socket.emit("add_answer", {aID:post.authorId, cID: post.courseId, msg:post.message, qID: post.questionId});
+        window.location = "course.html";
     });
 
     li.appendChild(newAnswer);

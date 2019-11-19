@@ -180,6 +180,10 @@ io.on('connection', function(socket){
 	socket.on('delete_course', async function(dta){
 		let res1 = await client.query("DELETE FROM course WHERE cid=" + dta);
 	});
+
+	socket.on('delete_post', async function(dta){
+		let res1 = await client.query("DELETE FROM post WHERE pid=" + dta);
+	});
 });
 
 http.listen(process.env.PORT || 3000, function(){
