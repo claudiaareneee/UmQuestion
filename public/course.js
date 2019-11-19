@@ -68,7 +68,11 @@ if(sessionStorage.getItem("userType") == 's'){
     document.getElementById("divider1").remove();
     document.getElementById("divider2").remove();
 }
-    
+
+if(sessionStorage.getItem("userType") == 't'){
+    deleteButton.remove();
+    document.getElementById("divider1").remove();
+}
 
 var courseSearchButton = document.getElementById("courseSearchButton");
 courseSearchButton.addEventListener("click", () => {
