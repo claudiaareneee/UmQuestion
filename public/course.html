@@ -1,94 +1,106 @@
 <!doctype html>
 <html>
-  <head>
-    <title>DCSP Project</title>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <!-- Our custom stylesheets -->
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <script>
-      var userID = sessionStorage.getItem("UserID");
-      var userType = sessionStorage.getItem("userType");
+<head>
+  <title>DCSP Project</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      if (userID == null || userType == null){
-          window.location = "/";
-      }
-    </script>
-  </head>
-  <body>
-      <div class="info-bar">
-          <div class="form-inline float-right w-25">
-              <input id="searchInput" type="text" class="form-control" placeholder="Enter Course ID...">
-              <button class="btn btn-primary info-bar-icon" id="courseSearchButton"><i class="fa fa-search" aria-hidden="true"></i></button>
-              <div class="button-group">
-                  <button class="btn btn-primary info-bar-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i></button>
-                  <div class="dropdown-menu">
-                      <a class="dropdown-item" id="courseButton">Courses</a>
-                      <div class="dropdown-divider" id="divider1"></div>
-                      <a class="dropdown-item" id="deleteButton"> Delete User</a>
-                      <div class="dropdown-divider" id="divider2"></div>
-                      <a class="dropdown-item" id="logoutButton">Logout</a>
-                    </div>
-              </div>
-          </div>
-      </div>
-	  
-	  		<div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="Delete User" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="header">
-						<h4 class="modal-title" id="deleteUser">Delete User</h4>
-					</div>
-					<div class="modal-body">
-						<form>
-							Email:
-							<input id="emailInput1" type="text" class="form-control" placeholder="Enter Email">
-							<span class="error" id="invalidEmail"></span>
-							<br>
-							Confirm Email:
-							<input id="emailInput2" type="text" class="form-control" placeholder="Confirm Email">
-							<span class="error" id="doNotMatch"></span>
-							<br>
-							Type "confirm delete" to proceed:
-							<input id="confirmText" type="text" class="form-control" placeholder="confirm delete">
-							<span class="error" id="confirmError"></span>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button onclick=Cancel() type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-						<button onclick=Confirm() type="button" class="btn btn-primary">Confirm</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	  
-      <div id="topBar"> 
-        <h1 id="apptitle" class="w-100">Um, Question ☝️</h1>
-      </div>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <div id="mainContent">
-        <h3 id="courseName">Welcome to ...</h3>
-        <p id="courseID">Course ID: 231423</p>
+  <!-- Our custom stylesheets -->
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <script>
+    var userID = sessionStorage.getItem("UserID");
+    var userType = sessionStorage.getItem("userType");
+
+    if (userID == null || userType == null) {
+      window.location = "/";
+    }
+  </script>
+</head>
+
+<body>
+  <div class="info-bar">
+    <div class="form-inline float-right w-25">
+      <input id="searchInput" type="text" class="form-control" placeholder="Enter Course ID...">
+      <button class="btn btn-primary info-bar-icon" id="courseSearchButton"><i class="fa fa-search"
+          aria-hidden="true"></i></button>
+      <div class="button-group">
+        <button class="btn btn-primary info-bar-icon" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i></button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" id="courseButton">Courses</a>
+          <div class="dropdown-divider" id="divider1"></div>
+          <a class="dropdown-item" id="deleteButton"> Delete User</a>
+          <div class="dropdown-divider" id="divider2"></div>
+          <a class="dropdown-item" id="logoutButton">Logout</a>
+        </div>
       </div>
-      
-      <!-- Bootstrap -->
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      
-      <!-- Our Scripts -->
-      <script src="/socket.io/socket.io.js"></script>
-      <script>
-        var socket = io();
-      </script>
-      <script src="models.js"></script>
-      <script src="View.js"></script>
-      <script src="course.js"></script>
-  </body>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="Delete User" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="header modal-header">
+          <h4 class="modal-title" id="deleteUser">Delete User</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            Email:
+            <input id="emailInput1" type="text" class="form-control" placeholder="Enter Email">
+            <span class="error" id="invalidEmail"></span>
+            <br>
+            Confirm Email:
+            <input id="emailInput2" type="text" class="form-control" placeholder="Confirm Email">
+            <span class="error" id="doNotMatch"></span>
+            <br>
+            Type "confirm delete" to proceed:
+            <input id="confirmText" type="text" class="form-control" placeholder="confirm delete">
+            <span class="error" id="confirmError"></span>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button onclick=Cancel() type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button onclick=Confirm() type="button" class="btn btn-primary">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="topBar">
+    <h1 id="apptitle" class="w-100">Um, Question ☝️</h1>
+  </div>
+
+  <div id="mainContent">
+    <h3 id="courseName">Welcome to ...</h3>
+    <p id="courseID">Course ID: 231423</p>
+  </div>
+
+  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <!-- Our Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
+  <script src="models.js"></script>
+  <script src="View.js"></script>
+  <script src="course.js"></script>
+</body>
+
 </html>

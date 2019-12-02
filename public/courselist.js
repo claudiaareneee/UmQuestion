@@ -27,6 +27,16 @@ courseButton.addEventListener("click", () => {
     window.location = "courselist.html";
 });
 
+var deleteButton = document.getElementById("deleteButton");
+deleteButton.addEventListener("click", () => {
+	$('#deleteUser').modal('show');
+});
+
+if(sessionStorage.getItem("userType") == 't'){
+    deleteButton.remove();
+    document.getElementById("divider1").remove();
+}
+
 var searchInput = document.getElementById("searchCourseInput");
 var courseSearchButton = document.getElementById("courseSearchButton");
 courseSearchButton.addEventListener("click", () => {

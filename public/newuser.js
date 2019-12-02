@@ -12,6 +12,7 @@ createUserButton.onclick = function (){ // Still need to validate input.
 	password.className = "form-control";
 	vpassword.className = "form-control";
 	emailFeedback.classList = "valid-feedback";
+	passwordFeedback.className = "valid-feedback";
 	vpasswordFeedback.className = "valid-feedback";
 
 

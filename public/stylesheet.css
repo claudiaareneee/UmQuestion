@@ -111,8 +111,13 @@ p {
 .error{
 	color: #FF0000;
 }
-/* .lightText {
-    color: var(--primary-text-color-subheadding);
-    font-size: .75em;
-} */
 
+.modal-header {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.modal-body{
+    margin: 2rem;
+}

@@ -51,8 +51,6 @@ newPostButton.addEventListener("click", () => {
     window.location = "/course.html";
 });
 
-var deleteButton = document.getElementById("deleteButton");
-
 var logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", () => {
     sessionStorage.removeItem("UserID");
@@ -69,7 +67,6 @@ deleteButton.addEventListener("click", () => {
 
 var courseButton = document.getElementById("courseButton");
 courseButton.addEventListener("click", () => {
-    // TODO: HANDLE GETTING COURSES
     window.location = "courselist.html";
 });
 
