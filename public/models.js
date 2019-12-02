@@ -115,6 +115,7 @@ function Confirm(){
 	if(confirmText != "confirm delete" || confirmText == "") {
 		count++;
 		document.getElementById("confirmError").innerHTML = "Type: confirm delete";
+		document.getElementById("confirmText").value = "";
 	} else {
 		document.getElementById("confirmError").innerHTML = "";
 	}
