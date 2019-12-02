@@ -14,7 +14,7 @@ submitButton.onclick = function(){
 		if(dbPassword == -1){
 			email.className += " is-invalid";
 			password.className += " is-invalid";
-			document.getElementById("errorText").style.visibility = 'visible';
+			document.getElementById("errorText").className = 'form-text invalid-feedback';
 		}
 		else{
 			console.log(dbPassword);
@@ -27,7 +27,7 @@ submitButton.onclick = function(){
 			else{
 				email.className += " is-invalid";
 				password.className += " is-invalid";
-				document.getElementById("errorText").style.visibility = 'visible';
+				document.getElementById("errorText").className = 'form-text invalid-feedback';
 			}
 		}
 	});

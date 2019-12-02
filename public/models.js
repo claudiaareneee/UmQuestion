@@ -68,3 +68,76 @@ class Teacher extends User{
 		super(userID);
 	}
 }
+
+function validateEmail(email){
+	var validEmail = /[a-z0-9]+@[a-z]+[.][a-z]+$/;
+	
+	if (!validEmail.test(email.toLowerCase()) || email == ""){
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function validateStringForPassword(password){
+	// Password must contain 8 characters and at least one number, one letter and one unique character such as !#$%&?
+	// Regex came from: https://stackoverflow.com/questions/2370015/regular-expression-for-password-validation
+	var validPassword = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$/;
+
+	if (!validPassword.test(password) || email == ""){
+		return false;
+	} else {
+		return true;
+	}	
+}	
+
+function Confirm(){
+	var count = 0;
+	
+	var email_1 = document.getElementById("emailInput1").value;
+	var email_2 = document.getElementById("emailInput2").value;
+	var confirmText = document.getElementById("confirmText").value;
+	
+	if(validateEmail(email_1) == false){
+		count++;
+		document.getElementById("invalidEmail").innerHTML = "Invalid Format: Email Format";
+	} else {
+		document.getElementById("invalidEmail").innerHTML = "";
+	}
+	
+	if(email_1 != email_2 || email_1 == "" || email_2 == "") {
+		count++;
+		document.getElementById("doNotMatch").innerHTML = "Email fields do not match";
+	} else {
+		document.getElementById("doNotMatch").innerHTML = "";
+	}
+	
+	if(confirmText != "confirm delete" || confirmText == "") {
+		count++;
+		document.getElementById("confirmError").innerHTML = "Type: confirm delete";
+	} else {
+		document.getElementById("confirmError").innerHTML = "";
+	}
+	
+	if(count == 0) {
+		document.getElementById("emailInput1").value = "";
+		document.getElementById("emailInput2").value = "";
+		document.getElementById("confirmError").innerHTML = "";
+		
+		$('#deleteUser').modal('hide');
+		socket.emit('delete_user', email_1);
+		socket.on('confirm_delete', function(dta){
+			if(dta == 1){
+				alert("User successfully Deleted.");
+			}
+			else{
+				alert("User does  not exist.");
+			}
+		});
+	}
+}
+
+function Cancel(){
+	document.getElementById("emailInput1").value = "";
+	document.getElementById("emailInput2").value = "";
+}
