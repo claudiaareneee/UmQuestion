@@ -121,3 +121,9 @@ p {
 .modal-body{
     margin: 2rem;
 }
+
+.invalid-feedback{
+    background-color: #b6dbe2;
+    padding: .25rem;
+    border-radius: .25rem;
+}
