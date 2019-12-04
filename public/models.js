@@ -123,7 +123,7 @@ function Confirm(){
 	if(count == 0) {
 		document.getElementById("emailInput1").value = "";
 		document.getElementById("emailInput2").value = "";
-		document.getElementById("confirmError").innerHTML = "";
+		document.getElementById("confirmText").value = "";
 		
 		$('#deleteUser').modal('hide');
 		socket.emit('delete_user', email_1);
